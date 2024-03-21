@@ -8,18 +8,17 @@
 дата выплаты в формате ДД.ММ.ГГГГ.
 На основе данных из ведомости следует подсчитать общее количество выплаченных средств и определить человека с максимальной суммой выплат.
 
-Пример данных ведомости
-
-Tom Hanks 35500 10.11.2020
-Rebecca Williams 85000 1.1.2021
-Sally Field 15600 15.8.2021
-Michael Humphreys 29400 23.5.2020
-Harold Herthum 74300 9.6.2019
-George Kelly 45000 12.3.2018
-Bob Penny 12500 13.5.2020
-John Randall 23400 2.10.2020
-Sam Anderson 6500 15.7.2020
-Margo Moorer 12350 24.2.2019
+Пример данных ведомости:
+Tom Hanks, 35500, 10.11.2020
+Rebecca Williams, 85000, 1.1.2021
+Sally Field, 15600, 15.8.2021
+Michael Humphreys, 29400, 23.5.2020
+Harold Herthum, 74300, 9.6.2019
+George Kelly, 45000, 12.3.2018
+Bob Penny, 12500, 13.5.2020
+John Randall, 23400, 2.10.2020
+Sam Anderson, 6500, 15.7.2020
+Margo Moorer, 12350, 24.2.2019
 */
 
 #include <iostream>
@@ -30,10 +29,14 @@ Margo Moorer 12350 24.2.2019
 int main()
 {
     std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task03/payment_list.txt";
-    std::string name, date;
+
+    std::string tmp; // временная переменная
     std::vector<std::string> names, dates;
-    int count = 0, maxNumber = 0, position = 0;
-    double payment, total = 0, maxPay = 0;
+    int count = 0,       // счётчик (индекс)
+        maxPayIndex = 0, // индекс максимального платежа
+        cursorPos = 0;   // позиция курсора
+    double payment, // платёж
+        total = 0;  // общая сумма
     std::vector<double> amounts;
 
     std::ifstream source;
@@ -41,39 +44,40 @@ int main()
 
     while (!source.eof())
     {
-        source.seekg(position);
-        std::cout << "s position: " << position << std::endl;
-        for (int i = 0; i < 2; i++)
+        source.seekg(cursorPos);
+        
+        source >> tmp;
+        names.push_back(tmp + " ");
+        cursorPos += tmp.size() + 1;
+
+        source >> tmp;
+        names[count] += tmp;
+        cursorPos += tmp.size() + 1;
+
+        source >> tmp;
+        cursorPos += tmp.size() + 1;
+
+        payment = std::stod(tmp);
+
+        if (amounts.size() > 0 && amounts[maxPayIndex] < payment)
         {
-            source >> name;
-            names.push_back(name + " ");
-            source >> name;
-            names[count] += name;
+            maxPayIndex = count;
         }
-        source >> payment;
-        if (maxPay < payment)
-        {
-            maxPay = payment;
-            maxNumber = count;
-        }
+        
         amounts.push_back(payment);
-        source >> date;
-        dates.push_back(date);
-        position += sizeof(names[count]) +
-                    sizeof(dates[count]) +
-                    sizeof(payment);
+        source >> tmp;
+        dates.push_back(tmp);
+        cursorPos += tmp.size() + 1;
         count++;
         total += payment;
-        std::cout << source.gcount() << " e position: " << position << std::endl;
-        std::cout << "name " << name << std::endl;
     }
 
-    // std::cout << "Total: " << total << std::endl;
-    // std::cout << "Maximal payment: "
-    //           << maxPay
-    //           << "Name: "
-    //           << names[maxPay]
-    //           << std::endl;
+    std::cout << "Total: " << total << std::endl;
+    std::cout << "Maximal payment: "
+              << amounts[maxPayIndex]
+              << " Name: "
+              << names[maxPayIndex]
+              << std::endl;
 
     source.close();
     return 0;
