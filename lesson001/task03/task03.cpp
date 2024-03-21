@@ -6,7 +6,7 @@
 имя и фамилия человека;
 количество денег, которые были выплачены лицу;
 дата выплаты в формате ДД.ММ.ГГГГ.
-На основе данных из ведомости следует подсчитать общее количество выплаченных 
+На основе данных из ведомости следует подсчитать общее количество выплаченных
 средств и определить человека с максимальной суммой выплат.
 
 Пример данных ведомости:
@@ -31,14 +31,14 @@ int main()
 {
     std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task03/payment_list.txt";
 
-    std::string tmp; // временная переменная
-    std::vector<std::string> names, dates;
-    int count = 0,       // счётчик (индекс)
-        maxPayIndex = 0, // индекс максимального платежа
-        cursorPos = 0;   // позиция курсора
-    double payment, // платёж
-        total = 0;  // общая сумма
-    std::vector<double> amounts;
+    std::vector<double> amounts;           // платежи
+    std::vector<std::string> names, dates; // имена, даты
+    std::string tmp;                       // временная переменная
+    int count = 0,                         // счётчик (индекс)
+        maxPayIndex = 0,                   // индекс максимального платежа
+        cursorPos = 0;                     // позиция курсора
+    double payment,                        // платёж
+        total = 0;                         // общая сумма
 
     std::ifstream source;
     source.open(path);
@@ -46,10 +46,10 @@ int main()
     while (!source.eof())
     {
         source.seekg(cursorPos);
-        
+
         source >> tmp;
         names.push_back(tmp + " ");
-        cursorPos += tmp.size() + 1;
+        cursorPos += tmp.size() + 1; // позиция курсора: длина + пробел
 
         source >> tmp;
         names[count] += tmp;
@@ -64,11 +64,11 @@ int main()
         {
             maxPayIndex = count;
         }
-        
+
         amounts.push_back(payment);
         source >> tmp;
         dates.push_back(tmp);
-        cursorPos += tmp.size() + 1;
+        cursorPos += tmp.size() + 1; // позиция курсора: длина + '\n'
         count++;
         total += payment;
     }
