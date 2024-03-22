@@ -19,21 +19,18 @@ int main()
     bool validateDate(std::string);
     bool validateNumbers(std::string, bool isDate = false);
     bool validateName(std::string);
-    std::string record;
 
     bool flag = true;
 
     while (flag)
     {
+        std::string record;
         std::string tmp = "";
         int complete = 0;
 
-        // if (tmp == "exit" || tmp == "Exit" || tmp == "EXIT")
-        //     break;
-
         std::cout << "Input Name: ";
         std::cin >> tmp;
-        std::cout << "validate amount: " << validateName(tmp) << std::endl;
+        // std::cout << "validate name: " << validateName(tmp) << std::endl;
         if (validateName(tmp))
         {
             record += tmp + " ";
@@ -41,7 +38,7 @@ int main()
         }
         std::cout << "Input Surname: ";
         std::cin >> tmp;
-        std::cout << "validate amount: " << validateName(tmp) << std::endl;
+        // std::cout << "validate surname: " << validateName(tmp) << std::endl;
         if (validateName(tmp))
         {
             record += tmp + " ";
@@ -50,26 +47,34 @@ int main()
 
         std::cout << "Input date (YYYY.MM.DD): ";
         std::cin >> tmp;
-        std::cout << "validate date: " << validateDate(tmp) << std::endl;
+        // std::cout << "validate date: " << validateDate(tmp) << std::endl;
         if (validateDate(tmp))
         {
             record += tmp + " ";
             complete++;
         }
+        else
+            std::cout << "Incorrect date." << std::endl;
 
         std::cout << "Input amount: ";
         std::cin >> tmp;
-        std::cout << "validate amount: " << validateNumbers(tmp) << std::endl;
+
         if (validateNumbers(tmp))
         {
             record += tmp + "\n";
             complete++;
         }
+        else
+            std::cout << "Incorrect amount." << std::endl;
 
         if (complete == 5)
             writeFile(record);
+        else
+            std::cout << "The record is corrupt."
+                      << " Please try again."
+                      << std::endl;
 
-        std::cout << "Proceed to next record (Y/n)";
+        std::cout << "Proceed to next record (Y/n)? ";
         std::cin >> tmp;
         if (tmp == "n" || tmp == "N")
             flag = false;
@@ -81,9 +86,9 @@ int main()
 void writeFile(std::string record)
 {
     std::ofstream file;
-    file.open(path, std::ios::binary);
+    file.open(path, std::ios::app);
     std::cout << "Recording: " << record << std::endl;
-    // file.write(record, sizeof(*record));
+    file << record;
     file.close();
 }
 
@@ -124,10 +129,13 @@ bool validateDate(std::string date)
 bool validateNumbers(std::string numLine, bool isDate = false)
 {
     bool flag = false;
-    std::cout << "isDate: " << isDate << std::endl;
     int countDots = 0;
-    /* below: ASCII codes for 0, 1, 2, 3, 4, 6, 8, 9 */
-    int nums[] = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
+
+    if (isDate && numLine.size() < 10)
+    {
+        std::cout << "Date string is too short." << std::endl;
+        return false;
+    }
 
     for (int i = 0; i < numLine.size(); i++)
     {
@@ -135,29 +143,18 @@ bool validateNumbers(std::string numLine, bool isDate = false)
         {
             countDots++;
             if (isDate && countDots > 2 || !isDate && countDots > 1)
+            {
+                std::cout << "Too many dots." << std::endl;
                 return false;
+            }
         }
         else
         {
-            // std::cout << "num validator " << numLine[i] << std::endl;
-            for (int j = 0; j < sizeof(nums); j++)
-            {
-                // if (nums[j] == (int)numLine[i])
-                if ((int)numLine[i] >= 48 && (int)numLine[i] <= 57)
-                    flag = true;
-                else
-                {
-                    // todo RMS
-                    std::cout << "\n"
-                              << "nums: "
-                              << nums[i]
-                              << " (int)numLine[i]: "
-                              << (int)numLine[i]
-                              << " numLine[i]: "
-                              << numLine[i]
-                              << std::endl;
-                }
-            }
+            /* ASCII codes: 'A' = 48; 'Z' = 57 */
+            if ((int)numLine[i] >= 48 && (int)numLine[i] <= 57)
+                flag = true;
+            else
+                flag = false;
         }
     }
     return flag;
@@ -173,9 +170,9 @@ bool validateName(std::string name)
     int upperLettersA = 65;
     int upperLettersZ = 90;
 
-    bool validateNumbers(std::string);
+    bool validateNumbers(std::string, bool isDate = false);
 
-    if (validateNumbers)
+    if (validateNumbers(name))
     {
         std::cout << "Name/surname should not contain numbers."
                   << std::endl;
@@ -187,4 +184,5 @@ bool validateName(std::string name)
                   << std::endl;
         return false;
     }
+    return true;
 }
