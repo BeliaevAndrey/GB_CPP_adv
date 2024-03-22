@@ -30,49 +30,120 @@
 
 int main()
 {
+    void clearBuffer(char buffer[]);
+
+    const std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task05/letters/";
     std::ifstream letter;
 
-    std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task05/letters/";
     int sectors = 13; // sectors amt
-    int curSect = 1;  // current sector
-    int secOffs = 0;  // sector offset
-    std::string question;
-    std::string answer;
+    int curSect = 1;  // current sector (start sector = 1)
+    int count = 0;    // count moves
+    int expertsScore = 0, tvViewersScore = 0;
 
-    std::cout << "Input offset (int): ";
-    std::cin >> secOffs;
+    char buffer[81];
+    std::string fullPath;
 
-    curSect = (curSect + secOffs) % 13;
-    std::cout << curSect << std::endl;
-
-    if (curSect < 10)
+    while (count < sectors)
     {
-        std::cout << "LESSER"
+        ++count;
+
+        int secOffs = 0; // sector offset
+
+        std::string question = "";
+        std::string answer = "", expertAnswer;
+
+        std::cout << "Input offset (int, '-2' -- exit): ";
+        std::cin >> secOffs;
+
+        if (secOffs == -2)
+        {
+            std::cout << "Exiting..." << std::endl;
+            break;
+        }
+
+        curSect = (curSect + secOffs) % 13;
+
+        /* Read question */
+        if (curSect < 10)
+            fullPath = path + "q00" + std::to_string(curSect) + ".txt";
+        else
+            fullPath = path + "q0" + std::to_string(curSect) + ".txt";
+
+        letter.open(fullPath, std::ios::binary);
+
+        while (!letter.eof())
+        {
+            letter.read(buffer, sizeof(buffer));
+            buffer[81] = 0;
+            question += buffer;
+        }
+
+        clearBuffer(buffer);
+
+        letter.close();
+
+        /* Read answer */
+        if (curSect < 10)
+            fullPath = path + "a00" + std::to_string(curSect) + ".txt";
+        else
+            fullPath = path + "a0" + std::to_string(curSect) + ".txt";
+
+        letter.open(fullPath, std::ios::binary);
+        while (!letter.eof())
+        {
+            letter.read(buffer, sizeof(buffer));
+            buffer[81] = 0;
+            answer += buffer;
+        }
+        clearBuffer(buffer);
+
+        std::cout << "right answer: " // todo remove semaphore
+                  << answer
                   << std::endl
-                  << "q00" + std::to_string(curSect) + ".txt"
                   << std::endl;
-        path += "q00" + std::to_string(curSect) + ".txt";
-    }
-    else
-    {
-        std::cout << "LARGER"
-                  << std::endl
-                  << "q0" + std::to_string((curSect) % 13) + ".txt";
-        path += "q0" + std::to_string(curSect) + ".txt";
-    }
-    std::cout << path << std::endl;
-    letter.open(path);
-    std::cout << "Opened: " << letter.is_open() << std::endl;
-    letter >> question;
 
-    std::cout << std::endl
-              << "Question "
-              << curSect
-              << " "
-              << question
-              << std::endl;
+        letter.close();
 
-    letter.close();
+        std::cout << std::endl
+                  << "Question "
+                  << curSect + 1
+                  << ": \n\""
+                  << question
+                  << "\"\n"
+                  << std::endl;
+
+        std::cout << "Input your answer (-2 -- exit): ";
+        std::cin >> expertAnswer;
+        std::cout << " Answer: " << expertAnswer << std::endl
+                  << std::endl;
+
+        if (expertAnswer == "-2")
+        {
+            std::cout << "Exiting..." << std::endl;
+            break;
+        }
+        if (answer == expertAnswer)
+            expertsScore++;
+        else
+            tvViewersScore++;
+
+        std::cout << "Scores: " << std::endl;
+        std::cout << "Experts           |"
+                  << "TV viewers        " << std::endl;
+        std::cout << expertsScore
+                  << "                 |"
+                  << tvViewersScore
+                  << std::endl;
+    }
+
+    std::cout << "Experts score:   " << expertsScore << std::endl;
+    std::cout << "TV viewer score: " << tvViewersScore << std::endl;
 
     return 0;
+}
+
+void clearBuffer(char buffer[])
+{
+    for (int i = 0; i < 81; i++) // clear buffer
+        buffer[i] = 0;
 }
