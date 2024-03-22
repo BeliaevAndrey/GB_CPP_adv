@@ -30,11 +30,9 @@ int main()
     {
         while (!source.eof())
         {
-            char symbol;
 
             source.seekg(position);
 
-            source >> symbol;
             source.read(buffer, sizeof(buffer));
 
             position += source.gcount();
