@@ -97,11 +97,6 @@ int main()
         }
         clearBuffer(buffer);
 
-        std::cout << "right answer: " // todo remove semaphore
-                  << answer
-                  << std::endl
-                  << std::endl;
-
         letter.close();
 
         std::cout << std::endl
@@ -120,6 +115,7 @@ int main()
         if (expertAnswer == "-2")
         {
             std::cout << "Exiting..." << std::endl;
+            tvViewersScore++;
             break;
         }
         if (answer == expertAnswer)
