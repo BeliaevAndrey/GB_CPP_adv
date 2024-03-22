@@ -153,6 +153,8 @@ bool validateNumbers(std::string numLine, bool isDate = false)
                               << nums[i]
                               << " (int)numLine[i]: "
                               << (int)numLine[i]
+                              << " numLine[i]: "
+                              << numLine[i]
                               << std::endl;
                 }
             }
