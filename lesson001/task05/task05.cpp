@@ -28,89 +28,50 @@
 #include <fstream>
 #include <string>
 
+const std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task05/letters/";
+
+std::ifstream letter;
+const int buffSize = 81;
+
 int main()
 {
-    void clearBuffer(char buffer[]);
-
-    const std::string path = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson001/task05/letters/";
-    std::ifstream letter;
+    void printScores(int, int);
+    void readAndPrintQuestion(int);
+    std::string readAnswer(int);
 
     int sectors = 13; // sectors amt
-    int curSect = 1;  // current sector (start sector = 1)
+    int curSect = 0;  // current sector
     int count = 0;    // count moves
     int expertsScore = 0, tvViewersScore = 0;
+    char buffer[buffSize];
 
-    char buffer[81];
-    std::string fullPath;
+    std::string question;
+    std::string answer, expertAnswer;
 
     while (count < sectors)
     {
-        ++count;
-
         int secOffs = 0; // sector offset
-
-        std::string question = "";
-        std::string answer = "", expertAnswer;
-
-        std::cout << "Input offset (int, '-2' -- exit): ";
+        std::cout << "Input offset (int, -2 -- exit): ";
         std::cin >> secOffs;
 
         if (secOffs == -2)
         {
             std::cout << "Exiting..." << std::endl;
+            if (count > 0)
+                tvViewersScore++;
             break;
         }
 
+        ++count;
+
         curSect = (curSect + secOffs) % 13;
 
-        /* Read question */
-        if (curSect < 10)
-            fullPath = path + "q00" + std::to_string(curSect) + ".txt";
-        else
-            fullPath = path + "q0" + std::to_string(curSect) + ".txt";
+        readAndPrintQuestion(curSect);
 
-        letter.open(fullPath, std::ios::binary);
-
-        while (!letter.eof())
-        {
-            letter.read(buffer, sizeof(buffer));
-            buffer[81] = 0;
-            question += buffer;
-        }
-
-        clearBuffer(buffer);
-
-        letter.close();
-
-        /* Read answer */
-        if (curSect < 10)
-            fullPath = path + "a00" + std::to_string(curSect) + ".txt";
-        else
-            fullPath = path + "a0" + std::to_string(curSect) + ".txt";
-
-        letter.open(fullPath, std::ios::binary);
-        while (!letter.eof())
-        {
-            letter.read(buffer, sizeof(buffer));
-            buffer[81] = 0;
-            answer += buffer;
-        }
-        clearBuffer(buffer);
-
-        letter.close();
-
-        std::cout << std::endl
-                  << "Question "
-                  << curSect + 1
-                  << ": \n\""
-                  << question
-                  << "\"\n"
-                  << std::endl;
+        answer = readAnswer(curSect);
 
         std::cout << "Input your answer (-2 -- exit): ";
         std::cin >> expertAnswer;
-        std::cout << " Answer: " << expertAnswer << std::endl
-                  << std::endl;
 
         if (expertAnswer == "-2")
         {
@@ -118,28 +79,87 @@ int main()
             tvViewersScore++;
             break;
         }
+
         if (answer == expertAnswer)
             expertsScore++;
         else
             tvViewersScore++;
 
-        std::cout << "Scores: " << std::endl;
-        std::cout << "Experts           |"
-                  << "TV viewers        " << std::endl;
-        std::cout << expertsScore
-                  << "                 |"
-                  << tvViewersScore
-                  << std::endl;
+        printScores(expertsScore, tvViewersScore);
     }
 
+    std::cout << "Final score: " << std::endl;
     std::cout << "Experts score:   " << expertsScore << std::endl;
-    std::cout << "TV viewer score: " << tvViewersScore << std::endl;
+    std::cout << "TV viewers score: " << tvViewersScore << std::endl;
 
     return 0;
 }
 
-void clearBuffer(char buffer[])
+void readAndPrintQuestion(int curSect)
 {
-    for (int i = 0; i < 81; i++) // clear buffer
-        buffer[i] = 0;
+    int position = 0;
+
+    std::string fullPath;
+
+    /* Read question */
+    if (curSect < 10)
+        fullPath = path + "q00" + std::to_string(curSect) + ".txt";
+    else
+        fullPath = path + "q0" + std::to_string(curSect) + ".txt";
+
+    letter.open(fullPath, std::ios::binary);
+
+    std::cout << "Question " << curSect + 1 << ": " << std::endl;
+
+    while (!letter.eof())
+    {
+        char buffer[buffSize];
+
+        letter.seekg(position);
+        letter.read(buffer, buffSize);
+
+        position += letter.gcount();
+
+        for (int i = 0; i < buffSize; i++)
+        {
+            std::cout << buffer[i];
+            buffer[i] = 0;
+        }
+    }
+    std::cout << std::endl;
+
+    letter.close();
+}
+
+std::string readAnswer(int curSect)
+{
+
+    std::string fullPath;
+    std::string answer;
+
+    /* Read answer */
+    if (curSect < 10)
+        fullPath = path + "a00" + std::to_string(curSect) + ".txt";
+    else
+        fullPath = path + "a0" + std::to_string(curSect) + ".txt";
+
+    letter.open(fullPath, std::ios::binary);
+
+    letter >> answer;
+
+    letter.close();
+
+    return answer;
+}
+
+void printScores(int expertsScore, int tvViewersScore)
+{
+
+    std::cout << "Scores: " << std::endl;
+    std::cout << "Experts           |"
+              << "TV viewers        " << std::endl;
+    std::cout << expertsScore
+              << "                 |"
+              << tvViewersScore
+              << std::endl;
 }
