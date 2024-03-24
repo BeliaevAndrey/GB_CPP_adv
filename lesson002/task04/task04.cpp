@@ -1,3 +1,4 @@
+/* DRAFT */
 /*
 Задание 4. Реализация симуляции банкомата
 
@@ -54,11 +55,11 @@ void check(std::vector<int> &charge)
     if (atm.good())
         while (!atm.eof())
         {
-            atm.seekg(position);
+            // atm.seekg(position);
             atm >> banknote;
-            std::cout << banknote << " -> " << std::endl;
+            std::cout << banknote << " -> " << position++ << std::endl;
             charge.push_back(banknote);
-            position += atm.gcount();
+            // position += atm.gcount();
         }
 
     atm.close();
@@ -102,15 +103,29 @@ void searchAndGet(int setOfNominals[], int amtOfNominals[], int &amount)
     std::vector<int> total;
     int count = 0;
     check(total);
-    for (int i = 0; i < sizeof(nominals); i++)
+    std::cout << "search and get" << std::endl; // todo RMS
+    // for (int i = 0; i < sizeof(nominals) / sizeof(nominals[0]); i++)
+    // {
+    //     std::cout << i << " "
+    //               << "amtOfNominals[i] ";
+    //     std::cout << i << " " << amtOfNominals[i];
+    //     std::cout << i << " "
+    //               << " setOfNominals[i] ";
+    //     std::cout << i << " " << setOfNominals[i] << std::endl;
+    // }
+    for (int i = 0; i < sizeof(nominals) / sizeof(nominals[0]); i++)
     {
         while (amtOfNominals[i])
         {
+            std::cout << "amtOfNominals[i] "
+                      << amtOfNominals[i]
+                      << std::endl; // todo RMS
             for (int i = 0; i < total.size(); i++)
             {
                 if (total[i] == setOfNominals[i])
                 {
-                    setOfNominals[i]--;
+                    std::cout << total[i] << " = " << setOfNominals[i] << std::endl;
+                    amtOfNominals[i]--;
                     count += total[i];
                     total[i] = 0;
                 }
@@ -132,9 +147,10 @@ void searchAndGet(int setOfNominals[], int amtOfNominals[], int &amount)
 
 void deduce(int &amount)
 {
+    std::cout << "deduce 1" << std::endl; // todo RMS
     // std::vector<int> total;
-    int setOfNominals[sizeof(nominals)];
-    int amtOfNominals[sizeof(nominals)];
+    int setOfNominals[] = {0, 0, 0, 0, 0};
+    int amtOfNominals[] = {0, 0, 0, 0, 0};
     int count = 0, index = 0;
     // check(total);
     while (count != amount)
@@ -148,6 +164,8 @@ void deduce(int &amount)
                 count += nominals[i];
             }
         }
+        // todo RMS
+        std::cout << "count" << count << " amount " << amount << std::endl;
         int index = sizeof(nominals) - 1;
         while (count < amount)
         {
@@ -180,7 +198,7 @@ int main()
     {
         if (command == '+')
             fillUp();
-        else
+        else if (command == '-')
         {
             int amount = 0;
             std::cout << "Enter amount: ";
