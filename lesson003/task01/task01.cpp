@@ -43,7 +43,7 @@ void loadList(std::ifstream &fileIn, std::vector<payment> &payments)
     {
         int nameLen;
         std::string line; // = "stub";
-        std::string date; // = "00.00.0000";
+        std::string date = "00.00.0000";
         fileIn.read((char *)&nameLen, sizeof(nameLen));
         line.resize(nameLen);
         fileIn.read((char *)line.c_str(), nameLen);
@@ -56,14 +56,18 @@ void loadList(std::ifstream &fileIn, std::vector<payment> &payments)
     }
 }
 
-void appendList(std::ofstream &fileOut, std::vector<payment> payments)
+void appendList(std::ofstream &fileOut, std::vector<payment> &payments)
 {
-    fileOut.write((char *)payments.size(), sizeof(payments.size()));
+    std::cout << "Writing..." << std::endl;
+    std::cout << "payments.size()" << payments.size() << std::endl;
+    int paySize = payments.size();
+    fileOut.write((char *)&paySize, sizeof(paySize));
+
     for (int i = 0; i < payments.size(); i++)
     {
         // std::string name = "rec" +
         //                      std::to_string(std::rand() % 1000 + 500);
-        int len = payments[i].name.length();
+        int len = payments[i].name.size();
         std::cout << len << " " << std::endl;
         fileOut.write((char *)&len, sizeof(len));
         fileOut.write((char *)payments[i].name.c_str(), len);
@@ -132,7 +136,7 @@ int main()
     {
         std::vector<payment> payments;
         // loadList(payments);
-        printList(payments);
+        // printList(payments);
         std::ofstream fileOut(listPath);
         payments.push_back(readData());
         appendList(fileOut, payments);
