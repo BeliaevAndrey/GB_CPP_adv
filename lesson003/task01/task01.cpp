@@ -32,82 +32,60 @@ struct payment
     int amount = 0;
 };
 
-void loadList(std::vector<payment> payments)
+void loadList(std::ifstream &fileIn, std::vector<payment> &payments)
 {
-    int count = 0;
-    std::ifstream fileIn(listPath, std::ios::binary);
+    payment current;
+    int count;
+    fileIn.read((char *)&count, sizeof(count));
 
-    if (fileIn.is_open())
+    std::cout << "Loading: " << std::endl;
+    for (int i = 0; i < count; i++)
     {
-        // if (fileIn.end)
-        //     return;
-        while (!fileIn.eof())
-        {
-            // int dateLen = 10;
-            int nameLen;
-            fileIn.read((char *)&nameLen, sizeof(nameLen));
-            std::cout << "Loading name... nameLen: " << nameLen << std::endl;
-            std::cout << "nameLen "
-                      << nameLen
-                      << " dateLen "
-                      /*<< dateLen*/
-                      << std::endl;
-
-            fileIn.read((char *)payments[count].name.c_str(),
-                        nameLen);
-
-            std::cout << "Loading date... dateLen: "
-                      << sizeof(payments[count].date)
-                      << std::endl;
-
-            fileIn.read((char *)payments[count].date.c_str(),
-                        sizeof(payments[count].date));
-
-            std::cout << "Loading amount... " << std::endl;
-
-            fileIn.read((char *)&payments[count].amount,
-                        sizeof(payments[count].amount));
-
-            ++count;
-        }
+        int nameLen;
+        std::string line; // = "stub";
+        std::string date; // = "00.00.0000";
+        fileIn.read((char *)&nameLen, sizeof(nameLen));
+        line.resize(nameLen);
+        fileIn.read((char *)line.c_str(), nameLen);
+        std::cout << nameLen << " " << line << std::endl;
+        current.name = line;
+        fileIn.read((char *)date.c_str(), date.length());
+        std::cout << nameLen << " " << date << std::endl;
+        current.date = date;
+        payments.push_back(current);
     }
-
-    fileIn.close();
 }
 
 void appendList(std::ofstream &fileOut, std::vector<payment> payments)
 {
+    fileOut.write((char *)payments.size(), sizeof(payments.size()));
     for (int i = 0; i < payments.size(); i++)
     {
-        // char zz = '\0';
-        int nameLen = payments[i].name.length();
-        int amountLen = sizeof(payments[i].amount);
-        int dateLen = sizeof(payments[i].date);
-        std::cout << "nameLen "
-                  << nameLen
-                  << " amountLen "
-                  << amountLen << std::endl
-                  << " dateLen "
-                  << dateLen << std::endl;
-        // std::cin >> zz;
-
-        fileOut.write((char *)&nameLen,
-                      payments[i].name.length());
-
-        fileOut.write((char *)payments[i].name.c_str(),
-                      nameLen);
-
+        // std::string name = "rec" +
+        //                      std::to_string(std::rand() % 1000 + 500);
+        int len = payments[i].name.length();
+        std::cout << len << " " << std::endl;
+        fileOut.write((char *)&len, sizeof(len));
+        fileOut.write((char *)payments[i].name.c_str(), len);
         fileOut.write((char *)payments[i].date.c_str(),
-                      sizeof(payments[i].date));
+                      payments[i].date.length());
+    }
+}
 
-        fileOut.write((char *)&payments[i].amount,
-                      sizeof(payments[i].amount));
+void printList(std::vector<payment> &payments)
+{
+    std::cout << "Current list: " << std::endl;
+    for (int i = 0; i < payments.size(); i++)
+    {
+        std::cout << payments[i].name << " ";
+        std::cout << payments[i].date << " ";
+        std::cout << payments[i].amount << std::endl;
     }
 }
 
 payment readData()
 {
-    void printLine(payment &);
+    // void printLine(payment &);
     payment curPayment;
     std::string name = "";
     std::string tmp = "";
@@ -127,28 +105,9 @@ payment readData()
     std::cin >> tmp;
     curPayment.amount = std::stoi(tmp);
 
-    printLine(curPayment);
+    // printLine(curPayment);
 
     return curPayment;
-}
-
-void printLine(payment &listLine)
-{
-    std::cout << listLine.name << " "
-              << listLine.date << " "
-              << listLine.amount << std::endl;
-}
-
-void printList(std::vector<payment> payments)
-{
-    std::cout << "Currently in list:" << std::endl;
-    for (int i = 0; i < payments.size(); i++)
-    {
-        std::cout << payments[i].name << " "
-                  << payments[i].date << " "
-                  << payments[i].amount << std::endl;
-    }
-    std::cout << std::endl;
 }
 
 int main()
@@ -161,16 +120,20 @@ int main()
     std::cin >> command;
     if (command == "list")
     {
+        std::ifstream fileIn(listPath, std::ios::binary);
         std::vector<payment> payments;
-        loadList(payments);
+
+        loadList(fileIn, payments);
         printList(payments);
+
+        fileIn.close();
     }
     else if (command == "add")
     {
         std::vector<payment> payments;
         // loadList(payments);
         printList(payments);
-        std::ofstream fileOut(listPath, std::ios::binary);
+        std::ofstream fileOut(listPath);
         payments.push_back(readData());
         appendList(fileOut, payments);
         fileOut.close();
