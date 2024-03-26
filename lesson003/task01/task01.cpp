@@ -109,10 +109,7 @@ bool readData(payment &curPayment)
     std::cout << "Input name: ";
     std::cin >> name;
     if (validateName(name))
-    {
         complete++;
-        std::cout << "complete 1 " << complete << std::endl;
-    }
 
     std::cout << "Input surname: ";
     std::cin >> tmp;
@@ -121,16 +118,14 @@ bool readData(payment &curPayment)
         name += (" " + tmp);
         curPayment.name = name;
         complete++;
-        std::cout << "complete 2 " << complete << std::endl;
     }
 
-    std::cout << "Input date (DD.MM.YYYY): ";
+    std::cout << "Input date (DD.MM.YYYY, YYYY >= 1970): ";
     std::cin >> tmp;
     if (validateDate(tmp))
     {
         curPayment.date = tmp;
         complete++;
-        std::cout << "complete 3 " << complete << std::endl;
     }
 
     std::cout << "Input amount: ";
@@ -139,17 +134,14 @@ bool readData(payment &curPayment)
     {
         curPayment.amount = std::stoi(tmp);
         complete++;
-        std::cout << "complete 4 " << complete << std::endl;
     }
 
     if (complete == 4)
     {
-        std::cout << "complete end " << complete << std::endl;
         return true;
     }
     else
     {
-        std::cout << "complete fail: " << complete << std::endl;
         std::cout << "Corrupt data. Please try again" << std::endl;
         return false;
     }
@@ -162,20 +154,11 @@ bool leapYear(int year)
 
 bool validateNumbers(std::string numLine, bool isDate = false)
 {
-    std::cout << "Validating numbers" << std::endl;
-
     bool flag = false;
     int countDots = 0;
 
-    // if (isDate && numLine.size() < 10)
-    // {
-    //     std::cout << "Date string is too short." << std::endl;
-    //     return false;
-    // }
-
     for (int i = 0; i < numLine.size(); i++)
     {
-        std::cout << numLine[i] << std::endl;
         if (numLine[i] == '.')
         {
             countDots++;
@@ -189,22 +172,10 @@ bool validateNumbers(std::string numLine, bool isDate = false)
         {
             /* ASCII codes: '0' = 48; '9' = 57 */
             if ((int)numLine[i] >= 48 && (int)numLine[i] <= 57)
-            {
-                std::cout << "right "
-                          << numLine[i]
-                          << (int)numLine[i]
-                          << std::endl;
-
                 flag = true;
-            }
+
             else
-            {
-                std::cout << "wrong? "
-                          << numLine[i]
-                          << (int)numLine[i]
-                          << std::endl;
                 flag = false;
-            }
         }
     }
     return flag;
@@ -212,7 +183,6 @@ bool validateNumbers(std::string numLine, bool isDate = false)
 
 bool validateDate(std::string date)
 {
-    std::cout << "Validating date" << std::endl;
     bool validateNumbers(std::string, bool);
     bool leapYear(int);
 
@@ -223,12 +193,7 @@ bool validateDate(std::string date)
     }
 
     if (!validateNumbers(date, true))
-    {
-        std::cout << "numbers invalid "
-                  << std::endl;
-
         return false;
-    }
 
     int months31[] = {1, 3, 5, 7, 8, 10, 12};
 
@@ -247,11 +212,6 @@ bool validateDate(std::string date)
         }
         else
         {
-            std::cout << "wrong?"
-                      << day << " "
-                      << "(day <= 28) " << (day <= 28)
-                      << std::endl;
-
             return day <= 28;
         }
     }
@@ -266,8 +226,6 @@ bool validateDate(std::string date)
 
 bool validateName(std::string name)
 {
-    std::cout << "Validating name" << std::endl;
-
     int upperLettersA = 65; // capitals ASCII
     int upperLettersZ = 90;
 
@@ -290,7 +248,7 @@ bool validateName(std::string name)
 
 int main()
 {
-    std::string command = "0";
+    std::string command = "0"; // stub flag for cycle
 
     while (command != "exit")
     {
