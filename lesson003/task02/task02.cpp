@@ -42,8 +42,8 @@ living,
 children,
 …
 
-* Затем нужно использовать полученный тип внутри структуры. Алгоритм
-заполнения каждого объекта одинаковый:
+* Затем нужно использовать полученный тип внутри структуры.
+Алгоритм заполнения каждого объекта одинаковый:
  * создать объект нужного типа,
  * ввести с клавиатуры значения,
  * добавить объект в вектор при помощи push_back.
@@ -65,7 +65,8 @@ enum roomType
 enum buildingType
 {
     barn,
-    bath
+    bath,
+    garage
 };
 
 struct room
@@ -107,6 +108,11 @@ struct plat
     house dwelling;
     std::vector<buildingType> buildings;
     int number = 0;
+};
+
+struct village
+{
+    std::vector<plat> plats;
 };
 
 int main()
