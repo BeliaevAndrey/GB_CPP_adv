@@ -27,31 +27,36 @@ __лексикографическом порядке__ (по алфавиту),
 
 using namespace std;
 
-void nextPatient(map<string, int> &queue, string &surname)
+void nextPatient(map<string, int> &queue)
 {
     if (queue.empty())
     {
         cout << "Nobody is waiting." << endl;
         return;
     }
-    map<string, int>::iterator it = queue.begin();
-    if (it->second == 0)
+
+    if (queue.begin()->second == 1)
+    {
+        cout << queue.begin()->first << endl;
         queue.erase(queue.begin());
+    }
     else
     {
-        queue.find(surname)->second -= 1;
-        cout << surname << endl;
+        queue.begin()->second -= 1;
+        cout << queue.begin()->first << endl;
     }
 }
 
 void appendQueue(map<string, int> &queue, string &surname)
 {
     if (queue.count(surname) == 0)
+    {
         queue.insert(make_pair(surname, 1));
+    }
     else
     {
         map<string, int>::iterator it = queue.begin();
-        queue.find(surname)->second -= 1;
+        queue.find(surname)->second += 1;
     }
 }
 
@@ -60,17 +65,19 @@ int main()
     string command;
     map<string, int> queue;
 
-    cout << "Input surname of command (Next) or 'exit' to exit: ";
-    cin >> command;
     while (true)
     {
-        if (command == "exit")
+        cout << "Input surname of command (Next) or 'exit' to exit: ";
+        cin >> command;
+        if (command == "exit" || command == "Exit")
         {
-            cout << "Exiting...";
+            cout << "Exiting..." << endl;
             break;
         }
-        if (command == "Next")
-            nextPatient(queue, command);
+        if (command == "Next" || command == "next")
+        {
+            nextPatient(queue);
+        }
         else
             appendQueue(queue, command);
     }
