@@ -15,8 +15,15 @@ Ivanov — узнать телефон абонента по фамилии
 */
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include <map>
+
+std::string CONDITIONS = "Request format:"
+                         "XX-XX-XX Surname -- добавить телефон и фамилию абонента в справочник\n"
+                         "where 'X' -- is strictly a digit ('-' sign is also allowed)\n"
+                         "XX-XX-XX -- узнать фамилию абонента по номеру телефона\n"
+                         "Surname -- узнать телефон абонента по фамилии\n";
 
 std::map<std::string, std::string> pBook;
 
@@ -31,7 +38,10 @@ void printPhoneBook()
     std::cout << std::endl;
 }
 
-void getPhone() {} // todo Fill the function up
+int getPhone(std::pair<std::string, std::vector<std::string>> answer)
+{
+    return 2;
+}
 
 int getSurname(std::string &phone,
                std::pair<std::string, std::string> &answer)
@@ -49,11 +59,12 @@ int getSurname(std::string &phone,
     return -2;
 }
 
-bool validateLetter(char digit)
+bool validateLetter(char letter)
 {
     int cLower = 65, cUpper = 90,
         nLower = 90, nUpper = 122;
-    int code = (int)digit;
+    int code = (int)letter;
+    std::cout << "letter: " << letter << std::endl;
     return (code >= cLower && code <= cUpper) ||
            (code >= nLower && code <= nUpper);
 }
@@ -61,33 +72,38 @@ bool validateLetter(char digit)
 bool validateDigit(char digit)
 {
     int lower = 48, upper = 57;
-    return ((int)digit >= lower && (int)digit <= upper) ||
-           (digit = '-');
+    // todo SEMAPHORE
+    std::cout << "digit: " << digit << " " << (int)digit << std::endl
+              << (((int)digit >= lower && (int)digit <= upper) || (digit = '-'))
+              << std::endl;
+    return (((int)digit >= lower && (int)digit <= upper) ||
+            (digit = '-'));
 }
 
 int parseReqAndWrite(std::string &request,
-                     std::pair<std::string, std::string> &answer)
+                     std::pair<std::string, std::string> &answer,
+                     std::pair<std::string,
+                               std::vector<std::string>> &multiAnswer)
 {
     std::string phone = "", surname = "";
     int i = 0;
-    while (request[i] != ' ' && request[i] != '\0')
+    if (validateDigit(request[i]))
     {
-        if (validateDigit(request[i]))
+        std::cout << "digit on start" << std::endl; // todo SEMAPHORE
+        while (request[i] != ' ' && request[i] != '\0')
         {
-            phone += request[i];
-            ++i;
+            if (validateDigit(request[i]))
+            {
+                phone += request[i];
+                ++i;
+            }
+            else
+                break;
         }
-        else
-            break;
-    }
 
-    i += 1;
-    std::cout << "surname:      " << surname << "\n" // todo SEMAPHORE
-              << std::boolalpha << "(surname == \"\")"
-              << (surname == "") << "\n"
-              << "phone:        " << phone << "\n"
-              << "request:      " << request
-              << std::endl;
+        i += 1;
+    }
+    std::cout << "i" << i << std::endl;
     for (; i < request.length(); i++)
         if (validateLetter(request[i]))
         {
@@ -95,6 +111,13 @@ int parseReqAndWrite(std::string &request,
         }
         else
             return -1;
+
+    std::cout << "surname:      " << surname << "\n" // todo SEMAPHORE
+              << std::boolalpha << "(surname == \"\")"
+              << (surname == "") << "\n"
+              << "phone:        " << phone << "\n"
+              << "request:      " << request
+              << std::endl;
 
     if (surname == "")
     {
@@ -114,19 +137,20 @@ int parseReqAndWrite(std::string &request,
 
 int main()
 {
-    std::string conditions = "Request format:"
-                             "XX-XX-XX Surname -- добавить телефон и фамилию абонента в справочник\n"
-                             "where 'X' -- is strictly a digit ('-' sign is also allowed)\n"
-                             "XX-XX-XX -- узнать фамилию абонента по номеру телефона\n"
-                             "Surname -- узнать телефон абонента по фамилии\n";
+    // std::string conditions = "Request format:"
+    //                          "XX-XX-XX Surname -- добавить телефон и фамилию абонента в справочник\n"
+    //                          "where 'X' -- is strictly a digit ('-' sign is also allowed)\n"
+    //                          "XX-XX-XX -- узнать фамилию абонента по номеру телефона\n"
+    //                          "Surname -- узнать телефон абонента по фамилии\n";
 
     std::map<std::string, std::string> pBook;
     std::pair<std::string, std::string> answer;
+    std::pair<std::string, std::vector<std::string>> multiAnswer;
     std::string request;
-    std::cout << conditions << std::endl;
+    std::cout << CONDITIONS << std::endl;
     std::cout << "Enter your request: ";
     std::getline(std::cin, request);
-    int aCode = parseReqAndWrite(request, answer);
+    int aCode = parseReqAndWrite(request, answer, multiAnswer);
     std::cout << "aCode" << aCode << std::endl;
     switch (aCode)
     {
