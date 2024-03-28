@@ -37,7 +37,7 @@ const std::string pathATM = "/large/data2/Home/Andrew/Documents/geekbrains/CPP_a
 int nominals[] = {100, 500, 1000, 2000, 5000};
 const int capacity = 1000;
 
-void parintATM()
+void printATM()
 {
     std::ifstream atm(pathATM);
     while (!atm.eof())
@@ -48,27 +48,28 @@ void parintATM()
     }
 }
 
-void check(std::vector<int> &charge)
+void readATM(int charge[])
 {
-    std::ifstream atm(pathATM);
+    std::ifstream atm(pathATM, std::ios::binary);
     int banknote, position = 0;
-    if (atm.good())
-        while (!atm.eof())
+    if (atm.is_open())
+    {
+        atm.read((char *)charge, capacity);
+        atm.close();
+    }
+    else
+    {
+        for (int i = 0; i < capacity; i++)
         {
-            // atm.seekg(position);
-            atm >> banknote;
-            std::cout << banknote << " -> " << position++ << std::endl;
-            charge.push_back(banknote);
-            // position += atm.gcount();
+            charge[i] = 0;
         }
-
-    atm.close();
+    }
 }
 
-void writeATM(std::vector<int> &recharge)
+void writeATM(int recharge[])
 {
-    std::ofstream atm(pathATM);
-    for (int i = 0; i < recharge.size(); i++)
+    std::ofstream atm(pathATM, std::ios::binary);
+    for (int i = 0; i < capacity; i++)
     {
         atm << recharge[i] << std::endl;
     }
@@ -78,121 +79,39 @@ void writeATM(std::vector<int> &recharge)
 
 void fillUp()
 {
-    std::vector<int> charge;
-    check(charge);
-    if (!charge.size())
+    int charge[capacity];
+    readATM(charge);
+
+    // todo RMS
+
+    std::cout << "fillup reads...\n " << std::endl;
+    for (int k = 0; k < capacity; k++)
     {
-        for (int i = 0; i < capacity; i++)
+        if (charge[k] % 100)
+            std::cout << k << " " << charge[k] << " ";
+    }
+    std::cout << "CONTINUE?: ";
+    int ff;
+    std::cin >> ff;
+    // todo end
+
+    for (int i = 0; i < capacity; i++)
+    {
+        if (charge[i] == 0)
         {
-            charge.push_back(nominals[std::rand() % 5]);
+            charge[i] = nominals[std::rand() % 5];
         }
     }
-    else
-    {
-        for (int i = 0; i < capacity; i++)
-        {
-            if (charge[i] == 0)
-                charge[i] = nominals[std::rand() % 5];
-        }
-    }
+
     writeATM(charge);
 }
 
-void searchAndGet(int setOfNominals[], int amtOfNominals[], int &amount)
-{
-    std::vector<int> total;
-    int count = 0;
-    check(total);
-    std::cout << "search and get" << std::endl; // todo RMS
-    // for (int i = 0; i < sizeof(nominals) / sizeof(nominals[0]); i++)
-    // {
-    //     std::cout << i << " "
-    //               << "amtOfNominals[i] ";
-    //     std::cout << i << " " << amtOfNominals[i];
-    //     std::cout << i << " "
-    //               << " setOfNominals[i] ";
-    //     std::cout << i << " " << setOfNominals[i] << std::endl;
-    // }
-    for (int i = 0; i < sizeof(nominals) / sizeof(nominals[0]); i++)
-    {
-        while (amtOfNominals[i])
-        {
-            std::cout << "amtOfNominals[i] "
-                      << amtOfNominals[i]
-                      << std::endl; // todo RMS
-            for (int i = 0; i < total.size(); i++)
-            {
-                if (total[i] == setOfNominals[i])
-                {
-                    std::cout << total[i] << " = " << setOfNominals[i] << std::endl;
-                    amtOfNominals[i]--;
-                    count += total[i];
-                    total[i] = 0;
-                }
-            }
-        }
-    }
-    for (int i = 0; i < sizeof(nominals); i++)
-    {
-        if (setOfNominals[i])
-            std::cout << "Not enough nominals in atm." << std::endl;
-    }
-    if (count == amount)
-    {
-        std::cout << "You are getting: " << count << std::endl;
-    }
-    else
-        std::cout << "Something went wrong: " << count << std::endl;
-}
-
-void deduce(int &amount)
-{
-    std::cout << "deduce 1" << std::endl; // todo RMS
-    // std::vector<int> total;
-    int setOfNominals[] = {0, 0, 0, 0, 0};
-    int amtOfNominals[] = {0, 0, 0, 0, 0};
-    int count = 0, index = 0;
-    // check(total);
-    while (count != amount)
-    {
-        for (int i = 0; i < sizeof(nominals); i++)
-        {
-            if (nominals[i] == amount)
-            {
-                setOfNominals[i] = nominals[i];
-                amtOfNominals[i] = 1;
-                count += nominals[i];
-            }
-        }
-        // todo RMS
-        std::cout << "count" << count << " amount " << amount << std::endl;
-        int index = sizeof(nominals) - 1;
-        while (count < amount)
-        {
-            for (; index >= 0; index--)
-            {
-                if (nominals[index] < (amount - count))
-                {
-                    amtOfNominals[index] = (amount - count) / nominals[index];
-                    count += amtOfNominals[index] * nominals[index];
-                }
-            }
-            if (count + nominals[index - 1] > amount)
-                --index;
-            if (!index && count < amount)
-            {
-                std::cout << "Unable to change the amount." << std::endl;
-                break;
-            }
-        }
-    }
-    searchAndGet(setOfNominals, amtOfNominals, amount);
-}
 
 int main()
 {
     std::srand(std::time(nullptr));
     char command = '0';
+    int charge[capacity];
 
     while (command != 'e')
     {
@@ -205,7 +124,32 @@ int main()
             std::cin >> amount;
             if (amount > 0 && !(amount % 100))
             {
-                deduce(amount);
+                // std::cout << "deducing..." << deduce(amount) << std::endl;
+                readATM(charge);
+                int count = 0;
+                for (int i = sizeof(nominals) - 1; i >= 0; i--)
+                {
+                    int banknote = nominals[i];
+                    for (int j = 0; j < capacity; j++)
+                    {
+                        if (banknote == charge[j])
+                        {
+                            if (banknote <= amount)
+                            {
+                                count += banknote;
+                                charge[j] = 0;
+                                if (count == amount)
+                                {
+                                    std::cout << "You get: " << count << std::endl;
+                                    writeATM(charge);
+                                    return 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                std::cout << "Not enough appropriate banknotes." << std::endl;
+                return 1;
             }
             else
                 std::cout << "Amount must be more than 0"
