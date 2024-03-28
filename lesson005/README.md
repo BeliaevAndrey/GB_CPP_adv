@@ -51,7 +51,7 @@
 Модульный способ вызова функции печати текста через макрос:
 
 ```c++
-define CALL(func) { func("Hello, GeekBrains!"); }
+#define CALL(func) { func("Hello, GeekBrains!"); }
 
 void print(std::string str) {
 std::cout << str << std::endl;
