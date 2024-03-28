@@ -30,18 +30,33 @@ using namespace std;
 #define SUMMER_F() { cout << "Summer" << endl; }
 #define AUTUMN_F() { cout << "Autumn" << endl; }
 
+/*
+При обёртывании __всей__ функции main(), в случае неопределённой директивы
+CURRENT возникает ошибка компиляции:
+
+```
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/10/../../../x86_64-linux-gnu/Scrt1.o: в функции «_start»:
+(.text+0x20): неопределённая ссылка на «main»
+collect2: error: ld returned 1 exit status
+```
+
+*/
+
+// #if CURRENT  // Error
 int main()
 {
-#if CURRENT
+#if CURRENT     // В данном случае ошибка не возникает
+
     switch (CURRENT)
     {
-    case 1: WINTER_F(); break;
-    case 2: AUTUMN_F(); break;
-    case 3: SPRING_F(); break;
-    case 4: AUTUMN_F();
+    case WINTER: WINTER_F(); break;
+    case SPRING: SPRING_F(); break;
+    case SUMMER: SUMMER_F(); break;
+    case AUTUMN: AUTUMN_F(); break;
     default: break;
     }
 
     return 0;
 #endif
 }
+// #endif
