@@ -19,8 +19,43 @@ Preprocess current TU.
 
 #include <iostream>
 
+using namespace std;
+
+#define SUNDAY 7 
+#define MONDAY 1
+#define TUESDAY 2
+#define WEDNESDAY 3
+#define THURSDAY 4
+#define FRIDAY 5
+#define SATURDAY 6
+
+#define READ_DAY(a)  { cout << "Input day number: "; cin >> a;}
+#define PRINT_DAY(b) { cout << NAME_##b << endl; }
+#define WRONG_DAY    { cout << "Wrong day number." << endl; }
+
+#define NAME_SUNDAY ("Sunday")
+#define NAME_MONDAY ("Monday")
+#define NAME_TUESDAY ("Tueday")
+#define NAME_WEDNESDAY ("Wednesday")
+#define NAME_THURSDAY ("Thursday")
+#define NAME_FRIDAY ("Friday")
+#define NAME_SATURDAY ("Saturday")
+
 int main()
 {
+    int dayNum;
+    READ_DAY(dayNum);
 
+    switch (dayNum)
+    {
+    case SUNDAY:    PRINT_DAY(SUNDAY);      break;
+    case MONDAY:    PRINT_DAY(MONDAY);      break;
+    case TUESDAY:   PRINT_DAY(TUESDAY);     break;
+    case WEDNESDAY: PRINT_DAY(WEDNESDAY);   break;
+    case THURSDAY:  PRINT_DAY(THURSDAY);    break;
+    case FRIDAY:    PRINT_DAY(FRIDAY);      break;
+    case SATURDAY:  PRINT_DAY(SATURDAY);    break;
+    default: WRONG_DAY; break;
+    }
     return 0;
 }
