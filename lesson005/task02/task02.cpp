@@ -16,9 +16,10 @@ SPRING, SUMMER, AUTUMN или WINTER он задаёт сезон, назван�
 using namespace std;
 
 // #define CURRENT WINTER
-#define CURRENT SPRING
+// #define CURRENT SPRING
 // #define CURRENT SUMMER
 // #define CURRENT AUTUMN
+#define WINTER
 
 #define WINTER 1
 #define SPRING 2
