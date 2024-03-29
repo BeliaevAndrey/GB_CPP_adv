@@ -10,7 +10,7 @@
 #include <ctime>
 #include <iostream>
 #include <iomanip>
-#include <unistd.h>
+#include <unistd.h> // для sleep()
 
 int main()
 {
@@ -20,9 +20,9 @@ int main()
     std::cout << "Input timer duration [MM:SS]: ";
     std::cin >> std::get_time(&delta, "%M:%S"); // получить длительность
 
-    now = time(nullptr); // обновмть текущее время
-    time_t end = now + delta.tm_min * 60 + delta.tm_sec;
+    now = time(nullptr); // обновить текущее время
     // вычислить конечную точку
+    time_t end = now + delta.tm_min * 60 + delta.tm_sec;
 
     std::tm tmN = *std::localtime(&end); // человекочитаемое время окончания
     std::cout << "Timer ends at: " << asctime(&tmN) << std::endl;
@@ -32,7 +32,7 @@ int main()
     std::cout << "Starting at: " << asctime(ct) << std::endl;
 
     while (current < end) {
-        sleep(1);
+        sleep(1); // задержка вывода 1 сек
         std::cout << end - current << std::endl; // остаток
         current = time(nullptr);
     }
