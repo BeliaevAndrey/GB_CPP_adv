@@ -16,11 +16,7 @@ for-циклами, только опосредованно, через макр
 #include <vector>
 
 
-#define ADD_PASSENGERS(func)(a) { readAmounts(&a, int carsLeft = carsAmt) }
-
-#define CALL(func, sArg, iArg) { func(string sArg, int &iArg); }
-  // todo sample for adapt-n
-
+#define CALL(func, argA, argB, argC) { func(argA, argB, argC); }
 
 
 using namespace std;
@@ -28,55 +24,61 @@ using namespace std;
 const int carsAmt = 10;
 const int passLim = 20;
 
-void readAmounts(vector<int>& train, int carsLeft = carsAmt) {
+void addPassengers(vector<int>& train, int carsLeft, int stub) {
+
     if (carsLeft == 0) return;
 
     cout << "Car # "
-        << carsAmt - carsLeft + 1
-        << ". Input number opf PASSENGERS: ";
-    int PASSENGERS;
-    cin >> PASSENGERS;
-    train.push_back(PASSENGERS);
+        << (carsAmt - carsLeft + 1)
+        << ". Input number of passengers:\t";
+    int passAmt;
+    cin >> passAmt;
+    train.push_back(passAmt);
 
-    readAmounts(train, carsLeft - 1);
+    CALL(addPassengers, train, carsLeft - 1, 0);
 
 
 }
 
-void print(std::string str, int& pAmt, int& cNum) {
-    cout << "Car # " << cNum << " "
-        << str << " "
-        << pAmt << endl;
+void print(string line, int amt, int num)
+{
+    std::cout << line << num << " " << amt << endl;
 }
 
 
-void analyze(vector<int>& train) {
-    int total = 0;
-
-    for (int i = 0; i < train.size(); i++)
+void analyze(vector<int>& train, int count, int total) {
+    if (count == 0)
     {
-        total += train[i];
+        cout << "Totally pasengers: " << total << endl;
+        return;
+    }
+    total += train[10 - count];
+
+    if (train[carsAmt - count] < passLim)
+    {
+        CALL(print, "Underload car\t# ", train[carsAmt - count],
+            carsAmt - count);
     }
 
-    float optimum = total / carsAmt;
-
-    for (int i = 0; i < train.size(); i++)
+    else if (train[carsAmt - count] > passLim)
     {
-        total += train[i];
-        (train[i] > passLim) ?
-            print("Overload", train[i], i) :
-            (train[i] == passLim) ?
-            print("Optimal", train[i], i) :
-            print("Underload", train[i], i);
+        CALL(print, "Overload  car\t# ", train[carsAmt - count],
+            carsAmt - count);
     }
-    cout << "Totally pasengers: " << total << endl;
+    else
+        CALL(print, "Optimal   car\t# ", train[carsAmt - count],
+            carsAmt - count);
+
+    CALL(analyze, train, count - 1, total);
+
+
 }
 
 int main() {
-    // CALL(print); // todo sample for adapt-n
     vector<int> train;
-    readAmounts(train);
-    analyze(train);
+
+    CALL(addPassengers, train, carsAmt, 0);
+    CALL(analyze, train, train.size(), 0);
 
 
     return 0;
