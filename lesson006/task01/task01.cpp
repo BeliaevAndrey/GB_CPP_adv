@@ -28,7 +28,6 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <vector>
 #include <map>
 
 using namespace std;
@@ -103,7 +102,6 @@ void status()
 
 int main()
 {
-    vector<string> tasks;
     string command;
     while (command != "exit") {
 
