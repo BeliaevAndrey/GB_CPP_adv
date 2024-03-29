@@ -24,7 +24,7 @@ using namespace std;
 const int carsAmt = 10;
 const int passLim = 20;
 
-void addPassengers(vector<int>& train, int carsLeft, int stub) {
+void addPassengers(vector<int>& train, int carsLeft, int *stub) {
 
     if (carsLeft == 0) return;
 
