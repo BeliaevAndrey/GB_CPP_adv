@@ -35,40 +35,40 @@ using namespace std;
 
 double duration(time_t start, time_t finish);
 
-string begin(string&);
-void endTask(string&);
+string begin();
+void endTask();
 void status();
 
 map<string, pair<time_t, time_t>> tasks;
-// string current;
+string current = "";
 
-string begin(string& current)
+string begin()
 {
     string taskName;
+
     cout << "Input task name: ";
     cin >> taskName;
-    endTask(current);
+
+    endTask();
+
     if (taskName == "exit")
         return "exit";
+
     time_t t = time(nullptr);
+
     tasks.insert(pair<string, pair<time_t, time_t>>
         (taskName, pair<time_t, time_t>(time(nullptr), 0)));
-    return taskName;
 
+    return taskName;
 }
 
-void endTask(string& current)
+void endTask()
 {
-    cout << "Ending task: " << current << endl;
     time_t t = time(nullptr);
     for (map<string, pair<time_t, time_t>>::iterator it = tasks.begin();
         it != tasks.end(); it++) {
         if (it->first == current) {
             it->second.second = t;
-            cout << "Task " << it->first << " finished" << endl;
-            cout << "Duration: "
-                << duration(it->second.first, it->second.second)
-                << endl;
         }
     }
 
@@ -88,14 +88,13 @@ void status()
 
     for (map<string, pair<time_t, time_t>>::iterator it = tasks.begin();
         it != tasks.end(); it++) {
-        cout << "Task: " << it->first << " status: ";
-        cout << "start: " << it->second.first << " ";
+        cout << "Task: \"" << it->first << "\" status: " << endl;
         if (it->second.second == 0) {
-            cout << "Task running: " << it->first << endl;
+            cout << "Task running. " << it->first << endl;
         }
         else {
-            cout << "Task finished at: " << it->second.second;
-            cout << " Duration: "
+            cout << "Finished, ";
+            cout << "\t Duration: "
                 << duration(it->second.first, it->second.second)
                 << endl;
         }
@@ -105,14 +104,14 @@ void status()
 int main()
 {
     vector<string> tasks;
-    string command, current = "";
+    string command;
     while (command != "exit") {
 
         cout << "Enter command: " << endl;
         cin >> command;
 
         if (command == "begin") {
-            string current = begin(current);
+            current = begin();
             if (current == "exit") return 0;
             cout << "Task \"" << current << "\" added." << endl;
         }
@@ -120,13 +119,13 @@ int main()
             status();
         }
         else if (command == "end") {
-            endTask(current);
+            endTask();
         }
         else if (command == "current") {
             cout << "Current: " << current << endl;
         }
         else if (command == "exit") {
-            endTask(current);
+            endTask();
             status();
         }
     }
