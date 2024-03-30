@@ -30,24 +30,19 @@ void findClosest(map<time_t, string>& birthdays) {
         if (it->first > now && minDelta > (it->first - now)) {
             minDelta = (it->first - now);
             closest = it->first;
+            cout << it->second << " " << it->first << " " << minDelta << endl;
         }
-        cout << it->second << " " << it->first << endl;
     }
+    cout << endl;
 
     cout << "Closest Birthday:\n" << endl;
-    cout << birthdays.find(closest)->second
+    cout << birthdays.find(closest)->second << " "
         << birthdays.find(closest)->first << endl;
 
 }
 
 void insertBD(map<time_t, string>& store, string& name, string& bDate)
 {
-    cout << "bDate: " << bDate << endl;
-    cout << "name: " << name << endl;
-    cout << "SM 1: " << endl;
-
-    bDate += " 00.00.00";
-
     time_t t = time(nullptr);
     tm* d = localtime(&t);
 
@@ -59,10 +54,7 @@ void insertBD(map<time_t, string>& store, string& name, string& bDate)
     d->tm_mday = stoi(bDate.substr(3, 4));
     d->tm_isdst = 0; // No daylight saving
 
-
     store.insert(make_pair(mktime(d), name));
-
-    cout << "SM 8: " << endl;
 }
 
 int main()
