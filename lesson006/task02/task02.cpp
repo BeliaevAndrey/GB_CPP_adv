@@ -18,17 +18,25 @@
 
 using namespace std;
 
-void printMap(map<time_t, string>& birthdays) {
-    cout << "Birthdays:\n" << endl;
+void findClosest(map<time_t, string>& birthdays) {
+    int minDelta = birthdays.begin()->first;
+    time_t closest;
+    time_t now = time(nullptr);
+
+    cout << "Closest Birthday:\n" << endl;
+
     for (map<time_t, string>::iterator it = birthdays.begin();
         it != birthdays.end(); it++) {
-        tm* dt = localtime((time_t*)it->first);
-        cout << it->first << " "
-            << dt << "   "
-            << it->second
-            << endl;
+        if (it->first > now && minDelta > (it->first - now)) {
+            minDelta = (it->first - now);
+            closest = it->first;
+        }
+        cout << it->second << " " << it->first << endl;
     }
 
+    cout << "Closest Birthday:\n" << endl;
+    cout << birthdays.find(closest)->second
+        << birthdays.find(closest)->first << endl;
 
 }
 
@@ -74,7 +82,7 @@ int main()
 
     }
 
-    printMap(birthdays);
+    findClosest(birthdays);
 
     return 0;
 }
