@@ -21,34 +21,38 @@ using namespace std;
 void findClosest(map<time_t, string>& birthdays) {
     int minDelta = birthdays.begin()->first;
     time_t closest;
+
+    /* calculate now for comparison */
     time_t now = time(nullptr);
-    tm * t = localtime(&now);
+    tm* t = localtime(&now);
     cout << "now: " << asctime(t) << endl;
     t->tm_hour = 0;
     t->tm_min = 0;
     t->tm_sec = 0;
-    cout << "now corrected: " << asctime(t) << endl;
-
-    cout << "Closest Birthday:\n" << endl;
+    now = mktime(t);
 
     for (map<time_t, string>::iterator it = birthdays.begin();
-        it != birthdays.end(); it++) {
-        if (abs(it->first - now) == 0) {
+        it != birthdays.end(); it++)
+    {
+        if (abs(it->first - now) == 0)
+        {
+            t = localtime(&birthdays.find(it->first)->first);
             cout << "Today! Birthday: \n";
-            cout << birthdays[closest] << " "
-                << birthdays.find(closest)->first << endl;
+            cout << put_time(t, "%M.%d") << " "
+                << birthdays.find(it->first)->second << endl << endl;
         }
-        else if (it->first > now && minDelta > (it->first - now)) {
+        else if (it->first > now && minDelta > (it->first - now))
+        {
             minDelta = (it->first - now);
             closest = it->first;
-            cout << it->second << " " << it->first << " " << minDelta << endl;
         }
     }
     cout << endl;
-
+    t = localtime(&birthdays.find(closest)->first);
     cout << "Closest Birthday:\n" << endl;
     cout << birthdays.find(closest)->second << " "
-        << birthdays.find(closest)->first << endl;
+        << put_time(t, "%m.%d") << endl;
+
 
 }
 
@@ -73,16 +77,14 @@ int main()
     string command;
     map<time_t, string> birthdays;
 
-    while (command != "end") {
-
+    while (command != "end")
+    {
         string name, bd;
         cout << "Input name and birthday [name MM.DD] (\"end\" to stop): ";
         cin >> name;
         if (name == "end") break;
         cin >> bd;
-        cout << "SM 0: " << endl;
         insertBD(birthdays, name, bd);
-
     }
 
     findClosest(birthdays);
