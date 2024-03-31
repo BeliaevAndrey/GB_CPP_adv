@@ -22,12 +22,23 @@ void findClosest(map<time_t, string>& birthdays) {
     int minDelta = birthdays.begin()->first;
     time_t closest;
     time_t now = time(nullptr);
+    tm * t = localtime(&now);
+    cout << "now: " << asctime(t) << endl;
+    t->tm_hour = 0;
+    t->tm_min = 0;
+    t->tm_sec = 0;
+    cout << "now corrected: " << asctime(t) << endl;
 
     cout << "Closest Birthday:\n" << endl;
 
     for (map<time_t, string>::iterator it = birthdays.begin();
         it != birthdays.end(); it++) {
-        if (it->first > now && minDelta > (it->first - now)) {
+        if (abs(it->first - now) == 0) {
+            cout << "Today! Birthday: \n";
+            cout << birthdays[closest] << " "
+                << birthdays.find(closest)->first << endl;
+        }
+        else if (it->first > now && minDelta > (it->first - now)) {
             minDelta = (it->first - now);
             closest = it->first;
             cout << it->second << " " << it->first << " " << minDelta << endl;
