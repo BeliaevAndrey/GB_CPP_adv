@@ -1,7 +1,6 @@
 #include "ram.h"
 
-
-
+int ramBuf[BUFFER_LEN];
 
 void write(int bufferIn[])
 {

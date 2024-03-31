@@ -55,8 +55,8 @@ D:/.../include/.. .h
 
 #include <iostream>
 
-#include "cpu.h"
 #include "ram.h"
+#include "cpu.h"
 #include "kbd.h"
 #include "gpu.h"
 #include "disk.h"
