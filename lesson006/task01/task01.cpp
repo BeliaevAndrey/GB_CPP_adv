@@ -73,20 +73,23 @@ void endTask()
 
 }
 
-double duration(time_t start, time_t finish) {
+double duration(time_t start, time_t finish) 
+{
     return difftime(finish, start) / 3600;
 
 }
 
 void status()
 {
-    if (tasks.empty()) {
+    if (tasks.empty()) 
+    {
         cout << "No current tasks." << endl;
         return;
     }
 
     for (map<string, pair<time_t, time_t>>::iterator it = tasks.begin();
-        it != tasks.end(); it++) {
+        it != tasks.end(); it++) 
+        {
         cout << "Task: \"" << it->first << "\" status: " << endl;
         if (it->second.second == 0) {
             cout << "Task running. " << it->first << endl;
@@ -103,8 +106,8 @@ void status()
 int main()
 {
     string command;
-    while (command != "exit") {
-
+    while (command != "exit") 
+    {
         cout << "Enter command: " << endl;
         cin >> command;
 
@@ -116,12 +119,10 @@ int main()
         else if (command == "status") {
             status();
         }
-        else if (command == "end") {
+        else if (command == "end") 
             endTask();
-        }
-        else if (command == "current") {
+        else if (command == "current") 
             cout << "Current: " << current << endl;
-        }
         else if (command == "exit") {
             endTask();
             status();
