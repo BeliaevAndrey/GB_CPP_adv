@@ -5,11 +5,11 @@
 Реализуйте простую модель работы персонального компьютера в качестве
 многомодульного проекта. В компьютере несколько основных, условных компонент.
 
-Центральный процессор (cpu) — должен иметь функцию
+* Центральный процессор (cpu) — должен иметь функцию
     * compute, которая складывает 8 чисел из буфера оперативной памяти
     (см. далее) и выводит результат в консоль.
 
-Оперативная память (ram) — содержит буфер на 8 целых чисел,
+* Оперативная память (ram) — содержит буфер на 8 целых чисел,
     * которые можно заполнить функцией write
     * и считать функцией read
 
@@ -55,8 +55,49 @@ D:/.../include/.. .h
 
 #include <iostream>
 
+#include "cpu.h"
+#include "ram.h"
+#include "kbd.h"
+#include "gpu.h"
+#include "disk.h"
+
+
+/*commands*/
+#define SUM "sum"
+#define SAVE "save"
+#define LOAD "load"
+#define INPUT "input"
+#define DISPLAY "display"
+#define EXIT "exit"
+
+
+
 int main()
 {
+    
+    while (readCommand() != EXIT)
+    {
+        if (readCommand() == SUM){
+            compute();
+        }
+        if (readCommand() == SAVE){
+            save();
+        }
+        if (readCommand() == LOAD){
+            load();
+        }
+        if (readCommand() == INPUT){
+            inputNums();
+        }
+        if (readCommand() == DISPLAY){
+
+        }
+        if (readCommand() == EXIT){
+            break;
+        }
+        else std::cout << "Unknown command." << std::endl;
+    }
+    
 
     return 0;
 }
