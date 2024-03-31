@@ -25,5 +25,5 @@ std::string outPoint(Point p)
 {
 
     return "(" + std::to_string(p.x) +
-        "" + std::to_string(p.y) + ")";
+        ", " + std::to_string(p.y) + ")";
 }
