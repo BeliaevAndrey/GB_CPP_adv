@@ -9,9 +9,6 @@ Player::Player() {
 
     std::cout << "Player is active." << std::endl;
     std::cout << menu << std::endl;
-
-    std::cout << std::boolalpha << "isPaused: " << isPaused
-        << std::endl; //todo RMS
 }
 
 
@@ -24,16 +21,18 @@ bool Player::checkAlbumLoaded() {
     return true;
 }
 void Player::play(int num) {
-    std::cout << "\nTrackNo: " << num << std::endl << std::endl;
     if (isPaused) {
         isPaused = false;
-        std::cout << "Continue playing" << std::endl;
+        std::cout << "\nContinue playing" << std::endl;
+        std::cout << "\nTrackNo: " << nowPlay << std::endl;
         playlist[nowPlay]->printTrack();
         return;
     }
     if (!checkAlbumLoaded()) return;
-    if (num < 1 || num <= trackCount) {
+    if (num < 1) num = 1;
+    if (num <= trackCount) {
         std::cout << "\nPlaying:" << std::endl;
+        std::cout << "\nTrackNo: " << num << std::endl;
         playlist[num - 1]->printTrack();
         nowPlay = num - 1;
     }
@@ -43,7 +42,7 @@ void Player::play(int num) {
 void Player::pause() {
     if (isPaused) {
         isPaused = false;
-        std::cout << "Continue playing" << std::endl;
+        std::cout << "\nContinue playing" << std::endl;
         playlist[nowPlay]->printTrack();
     }
     if (!checkAlbumLoaded()) return;
@@ -57,8 +56,7 @@ void Player::next() {
     if (!checkAlbumLoaded()) return;
     if (nowPlay > -1) {
         std::srand(time(nullptr));
-        int newNo = trackCount + (std::rand() % trackCount) - trackCount;
-        std::cout << newNo << std::endl;
+        int newNo = (std::rand() % trackCount) - 1;
         play(newNo);
     }
     else play(1);
