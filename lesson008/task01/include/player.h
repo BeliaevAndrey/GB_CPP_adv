@@ -10,7 +10,7 @@ class Player {
     Track* playlist;
     int trackCount;
     int nowPlay;
-    bool pause;
+    bool isPaused;
     bool checkAlbumLoaded();
 
 public:

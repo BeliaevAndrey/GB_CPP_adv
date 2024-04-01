@@ -5,6 +5,7 @@ add_executable(
         l08task01
         album.cpp
         player.cpp
+        track.cpp
         main.cpp
         ${LOCAL_INCLUDE}/album.h
         ${LOCAL_INCLUDE}/track.h

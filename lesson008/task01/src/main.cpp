@@ -29,7 +29,7 @@ std::tm) и продолжительность записи в секундах.
 #include <iostream>
 #include "player.h"
 #include <string>
-// #include "track.h"
+#include "track.h"
 
 
 int main()
@@ -37,7 +37,7 @@ int main()
     bool activeFlag = true;
 
     int command = 0;
-    Player* player = new Player();
+    Player player = Player();
 
     while (activeFlag) {
         std::cout << "Input command: ";
@@ -45,28 +45,28 @@ int main()
         switch (command)
         {
         case 1:
-            int trackNo = -1;
+            int trackNo;
             std::cout << "Input track number: ";
             std::cin >> trackNo;
-            player->play(trackNo);
+            player.play(trackNo);
             break;
         case 2:
-            player->pause();
+            player.pause();
             break;
         case 3:
-            player->next();
+            player.next();
             break;
         case 4:
-            player->stop();
+            player.stop();
             break;
         case 5:
-            player->exit(activeFlag);
+            player.exit(activeFlag);
             break;
         case 6:
-            player->printPlaylist();
+            player.printPlaylist();
             break;
         case 7:
-            player->loadPlaylist();
+            player.loadPlaylist();
             break;
 
         default:

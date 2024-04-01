@@ -1,3 +1,5 @@
+#pragma once
+
 #include <ctime>
 #include <string>
 #include <iostream>
@@ -6,45 +8,23 @@
 class Track
 {
 
-    time_t t = time(nullptr);
-    std::string singer = "";
-    std::string title = "";
-    std::string album = "";
-    std::tm* releaseDate = localtime(&t);
-    int duration = 0;
+    time_t t;
+    std::string singer;
+    std::string title;
+    std::string album;
+    std::tm* releaseDate;
+    int duration;
 
 public:
-    Track(
-        std::string singerIn, std::string albumIn,
-        std::string titleIn, tm* releaseDateIn, int durationIn) {
-        singer = singerIn;
-        album = albumIn;
-        title = titleIn;
-        releaseDate = releaseDateIn;
-        duration = durationIn;
+    Track(std::string, std::string, std::string, tm*, int);
 
-    }
+    std::string getSinger();
+    std::string getAlbum();
+    std::tm* getYear();
+    std::string getTitle();
 
-    std::string getSinger() { return singer; }
+    int getDuration();
 
-    std::string getAlbum() { return album; }
+    void printTrack();
 
-    std::tm* getYear() { return releaseDate; }
-
-    std::string getTitle() { return title; }
-
-    int getDuration() { return duration; }
-
-    void printTrack() {
-        std::cout << getSinger() << " "
-            << getTitle() << " "
-            << getDuration() << " "
-            << std::endl;
-    }
-    
-    // void setSinger(std::string  value) { singer = value; }
-    // void setAlbum(std::string  value) { album = value; }
-    // void setYear(std::tm* value) { releaseDate = value; }
-    // void setTitle(std::string  value) { title = value; }
-    // void setDuration(int value) { duration = value; }
 };
