@@ -87,27 +87,50 @@ class Phone
         return true;
     }
 
-    bool searchContact(std::string name, PhoneNumber* phoneNo) {
-        for (std::map<std::string, std::string>::iterator it = pBook.begin();
-            it != pBook.end(); it++) {
-            if (it->second == name) {
-                *phoneNo = it->first;
-                return true;
+    bool searchContact(std::string& valueIn, std::string valueOut) {
+        if (checkPhone(valueIn)) {
+            for (std::map<std::string, std::string>::iterator
+                it = pBook.begin(); it != pBook.end(); it++) {
+                if (it->first == valueIn) {
+                    valueOut = it->second;
+                    return true;
+                }
             }
+        }
+        else {
+            for (std::map<std::string, std::string>::iterator
+                it = pBook.begin(); it != pBook.end(); it++) {
+                if (it->second == valueIn) {
+                    valueOut = it->first;
+                    return true;
+                }
+            }
+
         }
         return false;
     }
 
-    bool searchContact(PhoneNumber* phoneNo, std::string name) {
-        for (std::map<std::string, std::string>::iterator it = pBook.begin();
-            it != pBook.end(); it++) {
-            if (phoneNo->eq(it->first)) {
-                name = it->second;
-                return true;
-            }
-        }
-        return false;
-    }
+        // bool searchContact(std::string name, PhoneNumber & phoneNo) {
+        //     for (std::map<std::string, std::string>::iterator it = pBook.begin();
+        //         it != pBook.end(); it++) {
+        //         if (it->second == name) {
+        //             phoneNo = it->first;
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // }
+
+        // bool searchContact(PhoneNumber * phoneNo, std::string name) {
+        //     for (std::map<std::string, std::string>::iterator it = pBook.begin();
+        //         it != pBook.end(); it++) {
+        //         if (phoneNo->eq(it->first)) {
+        //             name = it->second;
+        //             return true;
+        //         }
+        //     }
+        //     return false;
+        // }
 
 public:
     Phone() {}
@@ -119,8 +142,8 @@ public:
             std::cout << "Input name: ";
             std::string name;
             std::cin >> name;
-            PhoneNumber phone = PhoneNumber(phone);
-            pBook[phone.getNumber()] = name;
+            // PhoneNumber* phone = new PhoneNumber(phone);
+            pBook.insert(std::make_pair(phone, name));
             // pBook.insert(std::pair<std::string, std::string>(phone.getNumber(), name));
         }
         else
@@ -131,7 +154,7 @@ public:
         if (checkPhone(value)) {
             PhoneNumber* number = new PhoneNumber(value);
             std::string name;
-            if (searchContact(number, name)) {
+            if (searchContact(value, name)) {
                 std::cout << "Calling: " << name << " "
                     << number->getNumber()
                     << std::endl;
@@ -143,13 +166,12 @@ public:
 
         }
         else {
-            PhoneNumber* number = new PhoneNumber();
+            // PhoneNumber* number = new PhoneNumber();
+            std::string number;
             if (searchContact(value, number)) {
                 std::cout << "Calling: " << value << " "
-                    << number->getNumber()
+                    << number
                     << std::endl;
-                delete number;
-                number = nullptr;
             }
             else
                 std::cout << "Not found" << std::endl;
@@ -160,7 +182,7 @@ public:
         if (checkPhone(value)) {
             PhoneNumber* number = new PhoneNumber(value);
             std::string name;
-            if (searchContact(number, name)) {
+            if (searchContact(value, name)) {
                 std::cout << "Recipient found ";
                 std::string message;
                 getSms(message);
@@ -178,28 +200,30 @@ public:
 
         }
         else {
-            PhoneNumber* number = new PhoneNumber();
+            // PhoneNumber* number = new PhoneNumber();
+            std::string number;
             if (searchContact(value, number)) {
-                std::cout << "Recipient found ";
-                std::string message;
+                std::cout << "Recipient found. ";
+                std::string message = "";
                 getSms(message);
                 std::cout << "SMS: " << value << " "
-                    << number->getNumber() << "\n"
+                    << number << "\n"
+                    // << number->getNumber() << "\n"
                     << "Mesage:\n"
                     << message
                     << std::endl
                     << std::endl;
-                delete number;
-                number = nullptr;
+                // delete number;
+                // number = nullptr;
             }
             else
                 std::cout << "Not found" << std::endl;
         }
     }
-
     void getSms(std::string& message) {
+        std::cin.ignore();
         std::cout << "Input message text:\n";
-        std::getline(std::cin, message);
+        getline(std::cin, message);
     }
 
     void exit(bool& activeFlag) {
