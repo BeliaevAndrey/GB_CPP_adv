@@ -63,16 +63,6 @@ D:/.../include/.. .h
 #include "commands.h"
 
 
-// /*commands*/
-// #define SUM "sum" || "S"
-// #define SAVE "save"
-// #define LOAD "load"
-// #define INPUT "input"
-// #define DISPLAY "display"
-// #define EXIT "exit"
-
-
-
 int main()
 {
     std::string command = "";
