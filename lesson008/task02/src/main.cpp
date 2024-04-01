@@ -53,16 +53,34 @@ public:
     bool eq(PhoneNumber o) {
         return (phoneNo == o.getNumber());
     }
+
+    bool eq(std::string o) {
+        return (phoneNo == o);
+    }
+
 };
 
 class Phone
 {
-    std::map<PhoneNumber, std::string> pBook;
+    std::map<std::string, std::string> pBook;
 
     bool checkPhone(std::string& phone) {
         int lLim = 48, uLim = 57;
-        if (phone[0] != '+' || phone[2] != '7' || phone.length() < 12)
+        if (phone[0] != '+')
+        {
+            std::cout << "First must be '+'" << std::endl;
             return false;
+        }
+        if (phone[1] != '7')
+        {
+            std::cout << "Second must be '7'" << std::endl;
+            return false;
+        }
+        if (phone.length() < 12)
+        {
+            std::cout << "Number is too short" << std::endl;
+            return false;
+        }
         for (int i = 1; i < phone.length(); i++)
             if (phone[i] > uLim || phone[i] < lLim)
                 return false;
@@ -70,7 +88,7 @@ class Phone
     }
 
     bool searchContact(std::string name, PhoneNumber* phoneNo) {
-        for (std::map<PhoneNumber, std::string>::iterator it = pBook.begin();
+        for (std::map<std::string, std::string>::iterator it = pBook.begin();
             it != pBook.end(); it++) {
             if (it->second == name) {
                 *phoneNo = it->first;
@@ -81,7 +99,7 @@ class Phone
     }
 
     bool searchContact(PhoneNumber* phoneNo, std::string name) {
-        for (std::map<PhoneNumber, std::string>::iterator it = pBook.begin();
+        for (std::map<std::string, std::string>::iterator it = pBook.begin();
             it != pBook.end(); it++) {
             if (phoneNo->eq(it->first)) {
                 name = it->second;
@@ -102,7 +120,8 @@ public:
             std::string name;
             std::cin >> name;
             PhoneNumber phone = PhoneNumber(phone);
-            pBook.insert(std::pair<PhoneNumber, std::string>(phone, name));
+            pBook[phone.getNumber()] = name;
+            // pBook.insert(std::pair<std::string, std::string>(phone.getNumber(), name));
         }
         else
             std::cout << "Wrong phone format." << std::endl;
@@ -189,7 +208,7 @@ public:
     }
 
     void printBook() {
-        for (std::map<PhoneNumber, std::string>::iterator it = pBook.begin();
+        for (std::map<std::string, std::string>::iterator it = pBook.begin();
             it != pBook.end(); it++) {
             PhoneNumber phone = it->first;
             std::cout << it->second << " "
@@ -227,6 +246,8 @@ int main()
         else if (command == "EXIT") {
             phone->exit(activeFlag);
         }
+        else std::cout << "Command not recognized. (Check letters case)"
+            << std::endl;
 
     }
 
