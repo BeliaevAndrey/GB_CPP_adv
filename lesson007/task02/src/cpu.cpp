@@ -1,13 +1,12 @@
 #include "cpu.h"
-#include "ram.h"
-
 
 void compute()
 {
     int total = 0;
-    for (int i = 0; i < BUFFER_LEN; i++)
-    {
-        total += ramBuf[i];
-    }
-}
+    int cache[BUFFER_LEN];
+    read(cache);
 
+    for (int i = 0; i < BUFFER_LEN; i++)
+        total += cache[i];
+    displaySum(total);
+}

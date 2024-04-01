@@ -14,6 +14,7 @@ add_executable(
   ${LOCAL_INCLUDE}/gpu.h
   ${LOCAL_INCLUDE}/kbd.h
   ${LOCAL_INCLUDE}/ram.h
+  ${LOCAL_INCLUDE}/commands.h
   )
 
   target_include_directories(l07task02 PUBLIC ${LOCAL_INCLUDE})

@@ -1,4 +1,6 @@
 #pragma once
+#include "disk.h"
+#include "ram.h"
 
 #define PATH "data.txt"
 

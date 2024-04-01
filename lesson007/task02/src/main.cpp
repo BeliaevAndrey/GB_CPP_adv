@@ -60,44 +60,47 @@ D:/.../include/.. .h
 #include "kbd.h"
 #include "gpu.h"
 #include "disk.h"
+#include "commands.h"
 
 
-/*commands*/
-#define SUM "sum"
-#define SAVE "save"
-#define LOAD "load"
-#define INPUT "input"
-#define DISPLAY "display"
-#define EXIT "exit"
+// /*commands*/
+// #define SUM "sum" || "S"
+// #define SAVE "save"
+// #define LOAD "load"
+// #define INPUT "input"
+// #define DISPLAY "display"
+// #define EXIT "exit"
 
 
 
 int main()
 {
-    
-    while (readCommand() != EXIT)
+    std::string command = "";
+    while (command != EXIT)
     {
-        if (readCommand() == SUM){
+        menu();
+
+        if (command == SUM) {
             compute();
         }
-        if (readCommand() == SAVE){
+        else if (command == SAVE) {
             save();
         }
-        if (readCommand() == LOAD){
+        else if (command == LOAD) {
             load();
         }
-        if (readCommand() == INPUT){
+        else if (command == INPUT) {
             inputNums();
         }
-        if (readCommand() == DISPLAY){
-
+        else if (command == DISPLAY) {
+            display();
         }
-        if (readCommand() == EXIT){
+        else if (command == EXIT) {
             break;
         }
         else std::cout << "Unknown command." << std::endl;
+        command = readCommand();
     }
-    
 
     return 0;
 }
