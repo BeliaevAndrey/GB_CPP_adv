@@ -23,36 +23,57 @@ std::tm) и продолжительность записи в секундах.
     невозможно, так что команда должна срабатывать только в первом случае.
 * Команда exit — выход из программы.
 
-Советы и рекомендации
-Забудьте про отдельные глобальные функции и используйте возможности классов и
-методов по максимуму.
 */
 
-/* Classes*/
-// Track 
-// {
-//      название, 
-//      дата создания (std::tm),
-//      продолжительность записи в секундах
-// }
-// Player
-// {
-//      список доступных записей 
-//      нужные для логики работы плеера поля.
-// }
-
-
-/* Commands */
-// play
-// pause
-// next
-// stop
-// exit
 
 #include <iostream>
+#include "player.h"
+#include <string>
+// #include "track.h"
+
 
 int main()
 {
+    bool activeFlag = true;
+
+    int command = 0;
+    Player* player = new Player();
+
+    while (activeFlag) {
+        std::cout << "Input command: ";
+        std::cin >> command;
+        switch (command)
+        {
+        case 1:
+            int trackNo = -1;
+            std::cout << "Input track number: ";
+            std::cin >> trackNo;
+            player->play(trackNo);
+            break;
+        case 2:
+            player->pause();
+            break;
+        case 3:
+            player->next();
+            break;
+        case 4:
+            player->stop();
+            break;
+        case 5:
+            player->exit(activeFlag);
+            break;
+        case 6:
+            player->printPlaylist();
+            break;
+        case 7:
+            player->loadPlaylist();
+            break;
+
+        default:
+            std::cout << "Unknown command." << std::endl;
+            break;
+        }
+    }
 
     return 0;
 }
