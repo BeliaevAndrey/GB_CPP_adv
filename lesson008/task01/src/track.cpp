@@ -19,15 +19,15 @@ Track::Track(
 
 }
 
-std::string getSinger() { return singer; }
+std::string Track::getSinger() { return singer; }
 
-std::string getAlbum() { return album; }
+std::string Track::getAlbum() { return album; }
 
-std::tm* getYear() { return releaseDate; }
+std::tm* Track::getYear() { return releaseDate; }
 
-std::string getTitle() { return title; }
+std::string Track::getTitle() { return title; }
 
-int getDuration() { return duration; }
+int Track::getDuration() { return duration; }
 
 // void printTrack() {
 //     std::cout << getSinger() << " "
@@ -37,10 +37,10 @@ int getDuration() { return duration; }
 // }
 
 
-void printTrack() {
-    std::cout << singer << " "
-        << title << " "
-        << duration << " "
+void Track::printTrack() {
+    std::cout << "Singer: " << singer << "\n\""
+        << "Track: " << title << "\"\n"
+        << "Duration: " << duration << " sec"
         << std::endl;
 }
 

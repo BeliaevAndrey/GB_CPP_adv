@@ -59,13 +59,13 @@ int main()
         case 4:
             player.stop();
             break;
-        case 5:
+        case 7:
             player.exit(activeFlag);
             break;
         case 6:
             player.printPlaylist();
             break;
-        case 7:
+        case 5:
             player.loadPlaylist();
             break;
 

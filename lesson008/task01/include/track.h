@@ -15,6 +15,8 @@ class Track
     std::tm* releaseDate;
     int duration;
 
+    bool checkAlbumLoaded();
+    
 public:
     Track(std::string, std::string, std::string, tm*, int);
 

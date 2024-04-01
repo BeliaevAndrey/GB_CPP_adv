@@ -1,5 +1,6 @@
 #pragma once
 
 #include "track.h"
+#include <vector>
 
-Track* loadAlbum();
+void loadAlbum(std::vector<Track*>&, int&);

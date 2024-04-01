@@ -1,7 +1,8 @@
 #include "album.h"
 
 
-Track* loadAlbum()
+
+void loadAlbum(std::vector<Track*>& playlist, int& trackCount)
 {
     time_t t = time(nullptr);
     tm* releaseDate = localtime(&t);
@@ -17,14 +18,11 @@ Track* loadAlbum()
     int durations[12] = { 369, 242, 249, 245, 189, 241,
                         249, 242, 182, 242, 186, 244 };
 
-    int trackCount = sizeof(tracks) / sizeof(tracks[0]);
+    trackCount = sizeof(tracks) / sizeof(tracks[0]);
 
-    Track* playlist[trackCount];
     for (int i = 0; i < trackCount; i++)
     {
-        playlist[i] = new Track(singer, albumTitle, tracks[i],
-            releaseDate, durations[i]);
+        playlist.push_back(new Track(singer, albumTitle, tracks[i],
+            releaseDate, durations[i]));
     }
-
-    return *playlist;
 }
