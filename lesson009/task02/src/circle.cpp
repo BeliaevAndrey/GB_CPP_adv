@@ -42,7 +42,7 @@ std::string Circle::printTangent() {
     tngParams += std::to_string(tQ->centerY) + ")\n";
     tngParams += "\tLength A " + std::to_string(tQ->getLengthA()) + "\n ";
     tngParams += "\tLength B " + std::to_string(tQ->getLengthB()) + "\n ";
-    tngParams += "\tColor " + std::to_string(tQ->color);
+    tngParams += "\tColor " + tQ->getColor();
 
     return tngParams;
 }

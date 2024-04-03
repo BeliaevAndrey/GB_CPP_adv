@@ -2,14 +2,21 @@
 #include <iostream>
 
 Triangle::Triangle(
-    double inlengthA,
     double incenterX, double incenterY,
+    double inlengthA,
     figColor inColor)
 {
     lengthA = inlengthA;
     centerX = incenterX;
     centerY = incenterY;
     color = inColor;
+
+    std::cout << "lengthA " << lengthA
+        << "\n cX " << centerX
+        << "\n cY " << centerY
+        << "\ninlengthA " << inlengthA << ""
+        << "\nincenterX " << incenterX << ""
+        << "\nincenterY " << incenterY << "\n\n";
     figureType = "Triangle";
 
 }
@@ -22,9 +29,9 @@ double Triangle::getHeight() {
 
 Rectangle* Triangle::tangentQuad() {
     double height = getHeight();
-    // Поиск центра через центроид тругольника
-    double tQCenterY = centerY + (lengthA + height) / 3 - height / 2;
-    return new Rectangle(lengthA, height, centerX, tQCenterY, None);
+    // Поиск центра через радиус вписанной окружности (r = l * sqrt(3) / 6)
+    double tQCenterY2 = centerY - (lengthA * std::sqrt(3) / 6) + height / 2;
+    return new Rectangle(lengthA, height, centerX, tQCenterY2, None);
 }
 
 double Triangle::getLengthA() { return lengthA; }
