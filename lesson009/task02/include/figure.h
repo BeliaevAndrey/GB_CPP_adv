@@ -1,15 +1,14 @@
 #pragma once
 
-enum fColor {
-    None, red, green, blue, purple
-};
+#include "colors.h"
 
-class Figure {
+class Figure
+{
+    
 public:
-    double square;
-    fColor color;
     double centerX;
     double centerY;
+    figColor color;
 
-    double square(){};
+    std::string getColor();
 };

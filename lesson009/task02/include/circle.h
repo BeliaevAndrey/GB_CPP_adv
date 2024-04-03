@@ -1,22 +1,19 @@
 #pragma once
 
-#include <math.h>
-// #include "figure.h"
+#include "figure.h"
+#include "rectangle.h"
+
 
 class Circle : public Figure
 {
-// public:
-//     double square;
-//     fColor color;
-//     double centerX;
-//     double centerY;
-    double radius = 0;
+    std::string figureType = "Circle";
+    double radius;
 
 public:
-    double square(){
-        return atan(1) / 4 * radius;
-    }
+    Circle();
 
-    
-
+    // double area();
+    // Rectangle* tangentQuad();
+    // std::string printSelf();
+    // std::string printTangent();
 };
