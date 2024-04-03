@@ -26,8 +26,7 @@ rectangle, соответствующих фигурам. Команды дол�
 #include "figure.h"
 #include "rectangle.h"
 #include "circle.h"
-// #include "triangle.h"
-// #include "square.h"
+#include "triangle.h"
 
 void requestCenter(double& X, double& Y) {
     std::cout << "Input center coordinates X Y: ";
@@ -35,7 +34,7 @@ void requestCenter(double& X, double& Y) {
     std::cin >> Y;
 }
 
-double requestLength(std::string prompt) {
+double requestLength(const char* prompt) {
     double length;
     std::cout << "Input " << prompt << ": ";
     std::cin >> length;
@@ -53,7 +52,7 @@ figColor requestColor() {
 int main()
 {
     std::string command = "";
-    std::string menu = "rectangle\ncircletriangle\nsquare\nexit";
+    std::string menu = "rectangle\ncircle\ntriangle\nsquare\nexit";
 
     std::cout << "commans are:" << menu << std::endl;
 
@@ -66,22 +65,25 @@ int main()
         std::cin >> command;
         if (command == "circle") {
             requestCenter(centerX, centerY);
-            double length = requestLength("radius");
-            figColor cColor = requestColor();
-            Circle* circle = new Circle();
+            Circle* circle = new Circle(
+                centerX, centerY,
+                requestLength("radius"),
+                requestColor());
 
+            std::cout << circle->printSelf() << std::endl;
+            
             delete circle;
             circle = nullptr;
         }
         else if (command == "rectangle") {
             requestCenter(centerX, centerY);
-            std::cout << "Center" << centerX << " " << centerY << std::endl << std::endl;
             Rectangle* rectangle = new Rectangle(
                 requestLength("side 1 length"),
                 requestLength("side 2 length"),
                 centerX,
                 centerY,
                 requestColor());
+
             std::cout << rectangle->printSelf() << std::endl;
 
             delete rectangle;
@@ -90,17 +92,27 @@ int main()
         else if (command == "square") {
             double side = requestLength("side length");
             requestCenter(centerX, centerY);
-            Rectangle* circle = new Rectangle(
+            Rectangle* square = new Rectangle(
                 side, side,
                 centerX, centerY,
                 requestColor());
+            
+            std::cout << square->printSelf() << std::endl;
+
+            delete square;
+            square = nullptr;
         }
         else if (command == "triangle") {
             requestCenter(centerX, centerY);
-            Rectangle* circle = new Rectangle(centerX, centerY,
-                requestLength("side 1 length"),
-                requestLength("side 2 length"),
+            Triangle* triangle = new Triangle(centerX, centerY,
+                requestLength("side length"),
                 requestColor());
+            
+            std::cout << triangle->printSelf() << std::endl;
+
+            delete triangle;
+            triangle = nullptr;
+
         }
         else if (command == "exit") std::cout << "Exiting..." << std::endl;
         else std::cout << "Command not  recognized." << std::endl;

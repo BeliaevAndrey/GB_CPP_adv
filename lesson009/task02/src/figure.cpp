@@ -21,3 +21,8 @@ std::string Figure::getColor() {
         break;
     }
 }
+
+
+std::string Figure::getFigureType(){
+    return figureType;
+}

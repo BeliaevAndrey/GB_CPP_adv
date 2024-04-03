@@ -6,7 +6,6 @@
 class Rectangle : public Figure
 {
     double lengthA, lengthB;
-    std::string figureType;
 
 public:
     Rectangle(double, double, double,
