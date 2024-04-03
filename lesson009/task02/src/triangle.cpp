@@ -22,7 +22,6 @@ double Triangle::getHeight() {
 
 Rectangle* Triangle::tangentQuad() {
     double height = getHeight();
-    std::cout << "\t\t\t\t\t" << height << std::endl; //todo RMS
     // Поиск центра через центроид тругольника
     double tQCenterY = centerY + (lengthA + height) / 3 - height / 2;
     return new Rectangle(lengthA, height, centerX, tQCenterY, None);
