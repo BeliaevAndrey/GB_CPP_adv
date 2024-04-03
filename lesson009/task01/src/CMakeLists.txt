@@ -8,4 +8,4 @@ add_executable(
     ${LOCAL_INCLUDE}/??.h
     ${LOCAL_INCLUDE}/??.h)
 
-    target_include_directories(l09task01 PUCLIC ${LOCAL_INCLUDE})
+target_include_directories(l09task01 PUCLIC ${LOCAL_INCLUDE})
