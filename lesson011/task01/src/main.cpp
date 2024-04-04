@@ -54,14 +54,23 @@ void checkAnimal(Animal* animal) {
     std::cout << "This is " << animal->introduceSelf() << std::endl;
     animal->show_talents();
     std::cout << "\nTraining\n" << std::endl;
-    animal->setTalent(new Dance());
+
+    if (animal->getType() == "Dog")
+        animal->setTalent(new Dance());
+    else if (animal->getType() == "Cat")
+        animal->setTalent(new Sing());
+
     animal->show_talents();
+
+    std::cout << std::endl;
 
     Talent* t = animal->getTalent("Swim");
     if (t)
-        std::cout << animal->getTalent("Swim")->report() << std::endl;
+        std::cout << animal->getName() << " "
+        << t->report() << std::endl;
     else
-        std::cout << "No such talent" << std::endl;
+        std::cout << animal->getName() << " "
+        << "has not such talent" << std::endl;
 }
 
 int main()
@@ -72,39 +81,15 @@ int main()
 
     Dog* dog = new Dog("Steve", new Swim());
     checkAnimal(dog);
-    // dog->jump();
-    // dog->run();
-    // dog->voice();
-    // std::cout << "This is " << dog->introduceSelf() << std::endl;
-    // dog->show_talents();
-    // std::cout << "\nTraining\n" << std::endl;
-    // dog->setTalent(new Dance());
-    // dog->show_talents();
-
-    // Talent* t = dog->getTalent("Swim");
-    // if (t)
-    //     std::cout << dog->getTalent("Swim")->report() << std::endl;
-    // else
-    //     std::cout << "No such talent" << std::endl;
-
+  
+    for (int i=0; i < 80; i++)
+    {
+    std::cout <<"=" ;
+    }
+    std::cout<<std::endl;
     Cat* cat = new Cat("Felix", new Dance());
     checkAnimal(cat);
-    // cat->run();
-    // cat->jump();
-    // cat->voice();
-    // std::cout << "This is " << cat->introduceSelf() << std::endl;
-    // cat->show_talents();
-    // std::cout << "\nTraining\n" << std::endl;
-    // cat->setTalent(new Sing());
-    // cat->show_talents();
-
-    // t = cat->getTalent("Sing");
-    // if (t)
-    //     std::cout << t->report() << std::endl;
-    // else
-    //     std::cout << "No such talent" << std::endl;
-
-
+  
     delete dog;
     dog = nullptr;
     delete cat;
