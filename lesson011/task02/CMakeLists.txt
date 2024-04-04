@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project("Leson 11, task 1" VERSION 1.0)
+project("Leson 11, task 02" VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 set(LOCAL_INCLUDE ${CMAKE_SOURCE_DIR}/include)
