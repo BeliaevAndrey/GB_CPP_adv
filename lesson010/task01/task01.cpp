@@ -19,7 +19,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <cmath>
 #include <thread>
 #include <ctime>
 #include <mutex>
