@@ -29,7 +29,6 @@ const double SWIM_DISTANCE = 100.0;
 std::vector<std::string> finished;
 
 std::mutex poolLock;
-std::mutex printLock;
 
 void readSwimmers(std::vector<std::string>& swimmers) {
 
@@ -45,16 +44,16 @@ void swim(std::string name, double speed) {
     double metersDone = 0;
     int count = 0;
     poolLock.lock();
-    std::cout << name << " starts speed: " << speed << std::endl;
+    std::cout << name << " starts, speed: " << speed << std::endl;
     poolLock.unlock();
 
     while (SWIM_DISTANCE - metersDone > 0.1) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
         count++;
         metersDone += speed;
-        printLock.lock();
+        poolLock.lock();
         std::cout << name << " has swimmed " << metersDone << std::endl;
-        printLock.unlock();
+        poolLock.unlock();
 
     }
     poolLock.lock();
