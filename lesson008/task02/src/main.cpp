@@ -31,221 +31,15 @@
 #include <iostream>
 #include <map>
 #include <string>
-class PhoneNumber
-{
-    std::string phoneNo;
 
-public:
-    PhoneNumber() {}
-
-    PhoneNumber(std::string phone) {
-        phoneNo = phone;
-    }
-
-    std::string getNumber() {
-        return phoneNo;
-    }
-
-    void printPhone() {
-        std::cout << phoneNo << std::endl;
-    }
-
-    bool eq(PhoneNumber o) {
-        return (phoneNo == o.getNumber());
-    }
-
-    bool eq(std::string o) {
-        return (phoneNo == o);
-    }
-
-};
-
-class Phone
-{
-    std::map<std::string, std::string> pBook;
-
-    bool checkPhone(std::string& phone) {
-        int lLim = 48, uLim = 57;
-        if (phone[0] != '+')
-        {
-            std::cout << "First must be '+'" << std::endl;
-            return false;
-        }
-        if (phone[1] != '7')
-        {
-            std::cout << "Second must be '7'" << std::endl;
-            return false;
-        }
-        if (phone.length() < 12)
-        {
-            std::cout << "Number is too short" << std::endl;
-            return false;
-        }
-        for (int i = 1; i < phone.length(); i++)
-            if (phone[i] > uLim || phone[i] < lLim)
-                return false;
-        return true;
-    }
-
-    bool searchContact(std::string& valueIn, std::string valueOut) {
-        if (checkPhone(valueIn)) {
-            for (std::map<std::string, std::string>::iterator
-                it = pBook.begin(); it != pBook.end(); it++) {
-                if (it->first == valueIn) {
-                    valueOut = it->second;
-                    return true;
-                }
-            }
-        }
-        else {
-            for (std::map<std::string, std::string>::iterator
-                it = pBook.begin(); it != pBook.end(); it++) {
-                if (it->second == valueIn) {
-                    valueOut = it->first;
-                    return true;
-                }
-            }
-
-        }
-        return false;
-    }
-
-        // bool searchContact(std::string name, PhoneNumber & phoneNo) {
-        //     for (std::map<std::string, std::string>::iterator it = pBook.begin();
-        //         it != pBook.end(); it++) {
-        //         if (it->second == name) {
-        //             phoneNo = it->first;
-        //             return true;
-        //         }
-        //     }
-        //     return false;
-        // }
-
-        // bool searchContact(PhoneNumber * phoneNo, std::string name) {
-        //     for (std::map<std::string, std::string>::iterator it = pBook.begin();
-        //         it != pBook.end(); it++) {
-        //         if (phoneNo->eq(it->first)) {
-        //             name = it->second;
-        //             return true;
-        //         }
-        //     }
-        //     return false;
-        // }
-
-public:
-    Phone() {}
-    void add() {
-        std::string phone;
-        std::cout << "Input number: ";
-        std::cin >> phone;
-        if (checkPhone(phone)) {
-            std::cout << "Input name: ";
-            std::string name;
-            std::cin >> name;
-            // PhoneNumber* phone = new PhoneNumber(phone);
-            pBook.insert(std::make_pair(phone, name));
-            // pBook.insert(std::pair<std::string, std::string>(phone.getNumber(), name));
-        }
-        else
-            std::cout << "Wrong phone format." << std::endl;
-    }
-
-    void call(std::string value) {
-        if (checkPhone(value)) {
-            PhoneNumber* number = new PhoneNumber(value);
-            std::string name;
-            if (searchContact(value, name)) {
-                std::cout << "Calling: " << name << " "
-                    << number->getNumber()
-                    << std::endl;
-                delete number;
-                number = nullptr;
-            }
-            else
-                std::cout << "Not found" << std::endl;
-
-        }
-        else {
-            // PhoneNumber* number = new PhoneNumber();
-            std::string number;
-            if (searchContact(value, number)) {
-                std::cout << "Calling: " << value << " "
-                    << number
-                    << std::endl;
-            }
-            else
-                std::cout << "Not found" << std::endl;
-        }
-    }
-
-    void sms(std::string value) {
-        if (checkPhone(value)) {
-            PhoneNumber* number = new PhoneNumber(value);
-            std::string name;
-            if (searchContact(value, name)) {
-                std::cout << "Recipient found ";
-                std::string message;
-                getSms(message);
-                std::cout << "SMS: " << value << " "
-                    << number->getNumber() << "\n"
-                    << "Mesage:\n"
-                    << message
-                    << std::endl
-                    << std::endl;
-                delete number;
-                number = nullptr;
-            }
-            else
-                std::cout << "Not found" << std::endl;
-
-        }
-        else {
-            // PhoneNumber* number = new PhoneNumber();
-            std::string number;
-            if (searchContact(value, number)) {
-                std::cout << "Recipient found. ";
-                std::string message = "";
-                getSms(message);
-                std::cout << "SMS: " << value << " "
-                    << number << "\n"
-                    // << number->getNumber() << "\n"
-                    << "Mesage:\n"
-                    << message
-                    << std::endl
-                    << std::endl;
-                // delete number;
-                // number = nullptr;
-            }
-            else
-                std::cout << "Not found" << std::endl;
-        }
-    }
-    void getSms(std::string& message) {
-        std::cin.ignore();
-        std::cout << "Input message text:\n";
-        getline(std::cin, message);
-    }
-
-    void exit(bool& activeFlag) {
-        std::cout << "exiting..." << std::endl;
-        activeFlag = false;
-    }
-
-    void printBook() {
-        for (std::map<std::string, std::string>::iterator it = pBook.begin();
-            it != pBook.end(); it++) {
-            PhoneNumber phone = it->first;
-            std::cout << it->second << " "
-                << phone.getNumber()
-                << std::endl;
-        }
-
-    }
-};
+#include "phone.h"
 
 
 int main()
 {
+    std::string menu = "Commands are:\nADD\nCALL\nSMS\nEXIT\n";
+    std::cout << menu << std::endl;
+
     Phone* phone = new Phone();
     bool activeFlag = true;
     std::string command;
@@ -269,6 +63,9 @@ int main()
         }
         else if (command == "EXIT") {
             phone->exit(activeFlag);
+        }
+        else if (command == "PRINT_BOOK") {
+            phone->printBook();
         }
         else std::cout << "Command not recognized. (Check letters case)"
             << std::endl;
