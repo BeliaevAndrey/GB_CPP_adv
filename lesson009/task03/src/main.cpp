@@ -2,137 +2,6 @@
 #include <vector>
 #include <map>
 
-// class Team {
-//     int tSize = 0;
-//     std::vector<Group*> groups;
-// public:
-//     Team() {
-// 
-//     }
-// 
-//     Group* getGroup(int gID) {
-//         for (int i = 0; i < groups.size(); i++)
-//         {
-//             if (groups[i]->getGID() == gID) return groups[i];
-//         }
-//         return nullptr;
-//     }
-// 
-// };
-// 
-// class Group
-// {
-//     int groupSize = 0;
-//     int gID = 0;
-//     std::vector <Employee*> employees;
-// 
-// protected:
-//     void setGID(int num) {
-//         gID = groupSize + num;
-//     }
-// public:
-// 
-//     Group(int inSize, int num) {
-// 
-//     }
-// 
-//     int getGID() { return gID; }
-// 
-//     int getSize() { return groupSize; }
-// 
-//     std::vector<Employee*>& getEmployees() { return employees; }
-// 
-// };
-// 
-// class Employee
-// {
-//     int eID = 0;
-//     int gID = 0;
-//     std::string name = "Worker #";
-//     bool busy = false;
-//     Task task;
-// protected:
-// 
-//     void setEID(int eID) { this->eID = eID; }
-//     void setName(std::string* name) { this->name = *name; }
-//     void setBusy() { busy = true; }
-// 
-// public:
-//     Employee() {}
-// 
-//     Employee(int eID, int gID)
-//     {
-//         this->eID = gID * 100 + eID;
-//         this->gID = gID;
-//         this->name += " - " + eID;
-//     }
-// 
-//     int putTask(Task* task) {
-//         this->task = *task;
-//         busy = true;
-//         return eID;
-//     }
-// 
-//     int getGID() { return gID; }
-// 
-//     bool isBusy() { return busy; }
-// 
-// };
-// 
-// class Manager : public Employee
-// {
-//     char taskTypes[3] = { 'A', 'B', 'C' };
-//     std::map<int, Task*> groupTasks;
-//     Group* group;
-//     Team* team;
-// 
-// public:
-// 
-//     Manager(int eID, int gID, Team* t, Group* g)
-//     {
-//         this->setEID(eID);
-//         std::string mName = "Manager # - " + gID * 100;
-//         this->setName(&mName);
-//         this->team = t;
-//         this->group = g;
-//     }
-// 
-//     int generateTask(int tID) {
-//         std::srand(tID);
-//         Task* task = new Task(taskTypes[rand() % 3], tID);
-//         int eID = giveTask(task);
-//         if (eID == 0) {
-//             setBusy();
-//             return 0;
-//         }
-// 
-//         groupTasks.insert(std::make_pair(eID, task));
-//         return eID;
-//     }
-// 
-//     int giveTask(Task* task) {
-//         for (int i = 0; i < group->getSize(); i++)
-//         {
-//             Employee* e = group->getEmployees()[i];
-//             if (!e->isBusy())
-//                 return e->putTask(task);
-//         }
-//         return 0;
-//     }
-// };
-// 
-// class Task
-// {
-//     int tID = 0;
-//     char tType;
-// public:
-//     Task() {}
-//     Task(char tType, int tID) {
-//         this->tType = tType;
-//         this->tID = tID;
-//     }
-// };
-
 class Task
 {
     int tID = 0;
@@ -214,7 +83,7 @@ protected:
 public:
 
     Group(int inSize, int num) {
-//.*
+ 
         groupSize = inSize;
         gID = num;
     }
@@ -226,7 +95,7 @@ public:
     std::vector<Employee*>& getEmployees() { return employees; }
 
     void addEmployee(Employee* e) {
-//.*
+ 
         employees.push_back(e);
     }
 
@@ -258,7 +127,7 @@ public:
     }
 
     void addGroup(Group* g) {
-//.*
+ 
         groups.push_back(g);
     }
 
@@ -292,13 +161,6 @@ public:
         this->team = t;
         this->group = g;
 
-        //todo rm semaphores
-        // std::cout << "Manager::Manager(int gID, Team* t, Group* g)\n";
-        // std::cout << "in gID: " << gID
-        //     << " g->getGID(): " << g->getGID()
-        //     << " name: " << this->getName()
-        //     << " manager ID (this->getEID()): " << this->getEID()
-        //     << std::endl;
     }
 
     int generateTask(int tID) {
@@ -330,7 +192,7 @@ public:
 
 
 void Team::gatherTeam() {
-//.*
+ 
     int groupsAmount = 0, groupSize = 0;
     while (groupsAmount < 1)
     {
