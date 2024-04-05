@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 
+/* класс задача */
 class Task
 {
     int tID = 0;
@@ -14,28 +15,32 @@ public:
     }
 };
 
+/* Базовый класс "служащий" */
 class Employee
 {
     int eID = 0;
     int gID = 0;
-    std::string name = "Worker #";
+    std::string name;
     bool busy = false;
-    Task task;
+    Task* task;
 protected:
 
     void setEID(int eID) { this->eID = eID; }
     void setGID(int gID) { this->gID = gID; }
-    void setName(std::string name) { this->name = name; }
+    void setName(std::string* name) { this->name = *name; }
     void setBusy() { this->busy = true; };
 
     int getEID() { return this->eID; }
     std::string getName() { return name; }
 
 public:
-
+    ~Employee() {   // деструктор
+        delete task;
+        task = nullptr;
+    }
 
     int putTask(Task* task) {
-        this->task = *task;
+        this->task = task;
         busy = true;
         return eID;
     }
@@ -51,8 +56,12 @@ public:
     }
 
 
+
+
 };
 
+
+/*  Служащий - Работник */
 class Worker : public Employee
 {
 public:
@@ -61,15 +70,16 @@ public:
         setEID(gID * 100 + eID);
         setGID(gID);
         std::string name = "Worker #" + std::to_string(eID);
-        setName(name);
+        setName(&name);
     }
 
 };
 
+/* класс группа */
 class Group
 {
     int groupSize = 0;
-    int gID = 0;
+    int gID = 0;    // идентификатор группы
     std::vector <Employee*> employees;
 
 protected:
@@ -83,9 +93,16 @@ protected:
 public:
 
     Group(int inSize, int num) {
- 
+
         groupSize = inSize;
         gID = num;
+    }
+    ~Group() {
+        for (int i = 0; i < employees.size(); i++)
+        {
+            delete employees[i];
+            employees[i] = nullptr;
+        }
     }
 
     int getGID() { return gID; }
@@ -95,22 +112,24 @@ public:
     std::vector<Employee*>& getEmployees() { return employees; }
 
     void addEmployee(Employee* e) {
- 
+
         employees.push_back(e);
     }
 
     std::string toString() {
         std::string group = "Group: " + std::to_string(gID) += "\n";
-        group += "Manager: " + employees[0]->toString() + "\n";
-        for (int i = 0; i < employees.size(); i++)
+        group += "Manager: " + employees[0]->toString();
+        for (int i = 1; i < employees.size(); i++)
         {
-            group += employees[i]->toString() + "\n";
+            group += "Worker:  " + employees[i]->toString();
         }
 
-        return group;
+        return group + "\n";
     }
+
 };
 
+/* Класс команда */
 class Team {
 
     int tSize = 0;
@@ -118,6 +137,14 @@ class Team {
 
 
 public:
+    ~Team() { // деструктор
+        for (int i = 0; i < groups.size(); i++)
+        {
+            delete groups[i];
+            groups[i] = nullptr;
+        }
+    }
+
     Group* getGroup(int gID) {
         for (int i = 0; i < groups.size(); i++)
         {
@@ -127,22 +154,25 @@ public:
     }
 
     void addGroup(Group* g) {
- 
+
         groups.push_back(g);
     }
 
 
     void printTeam() {
+        std::cout << "The Team are: " << std::endl;
+
         for (int i = 0; i < this->groups.size(); i++)
         {
-            std::cout << "The Team are: " << std::endl;
             std::cout << groups[i]->toString();
         }
+        std::cout << std::endl;
     }
     void gatherTeam();
 
 };
 
+/* Служащий - менеджер */
 class Manager : public Employee
 {
     char taskTypes[3] = { 'A', 'B', 'C' };
@@ -157,7 +187,7 @@ public:
 
         this->setEID(gID * 100);
         std::string mName = "Manager #" + std::to_string(gID);
-        this->setName(mName);
+        this->setName(&mName);
         this->team = t;
         this->group = g;
 
@@ -188,11 +218,13 @@ public:
 
 };
 
-
-
-
+/*
+Вынесено для соблюдения последовательности наследования.
+Manager должен попасть в команду, до того как будет
+скомпилирован этот метод.
+*/
 void Team::gatherTeam() {
- 
+
     int groupsAmount = 0, groupSize = 0;
     while (groupsAmount < 1)
     {
@@ -220,7 +252,7 @@ void Team::gatherTeam() {
         {
             g->addEmployee(new Worker(groupID, j));
         }
-        std::cout << std::endl;
+
         addGroup(g);
     }
 }
