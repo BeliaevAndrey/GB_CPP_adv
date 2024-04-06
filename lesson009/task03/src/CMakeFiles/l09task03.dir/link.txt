@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/l09task03.dir/main.cpp.o -o ../bin/l09task03 
