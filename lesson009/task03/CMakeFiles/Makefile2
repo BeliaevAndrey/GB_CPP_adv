@@ -111,12 +111,12 @@ src/clean: src/CMakeFiles/l09task03.dir/clean
 src/CMakeFiles/l09task03.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target l09task03"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=1,2 "Built target l09task03"
 .PHONY : src/CMakeFiles/l09task03.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/l09task03.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/l09task03.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles 0
 .PHONY : src/CMakeFiles/l09task03.dir/rule

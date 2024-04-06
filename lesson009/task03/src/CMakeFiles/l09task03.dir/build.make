@@ -89,92 +89,17 @@ src/CMakeFiles/l09task03.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/main.cpp.s"
 	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/main.cpp -o CMakeFiles/l09task03.dir/main.cpp.s
 
-src/CMakeFiles/l09task03.dir/team.cpp.o: src/CMakeFiles/l09task03.dir/flags.make
-src/CMakeFiles/l09task03.dir/team.cpp.o: src/team.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/l09task03.dir/team.cpp.o"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/l09task03.dir/team.cpp.o -c /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/team.cpp
-
-src/CMakeFiles/l09task03.dir/team.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/l09task03.dir/team.cpp.i"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/team.cpp > CMakeFiles/l09task03.dir/team.cpp.i
-
-src/CMakeFiles/l09task03.dir/team.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/team.cpp.s"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/team.cpp -o CMakeFiles/l09task03.dir/team.cpp.s
-
-src/CMakeFiles/l09task03.dir/group.cpp.o: src/CMakeFiles/l09task03.dir/flags.make
-src/CMakeFiles/l09task03.dir/group.cpp.o: src/group.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/l09task03.dir/group.cpp.o"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/l09task03.dir/group.cpp.o -c /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/group.cpp
-
-src/CMakeFiles/l09task03.dir/group.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/l09task03.dir/group.cpp.i"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/group.cpp > CMakeFiles/l09task03.dir/group.cpp.i
-
-src/CMakeFiles/l09task03.dir/group.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/group.cpp.s"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/group.cpp -o CMakeFiles/l09task03.dir/group.cpp.s
-
-src/CMakeFiles/l09task03.dir/employee.cpp.o: src/CMakeFiles/l09task03.dir/flags.make
-src/CMakeFiles/l09task03.dir/employee.cpp.o: src/employee.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/l09task03.dir/employee.cpp.o"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/l09task03.dir/employee.cpp.o -c /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/employee.cpp
-
-src/CMakeFiles/l09task03.dir/employee.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/l09task03.dir/employee.cpp.i"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/employee.cpp > CMakeFiles/l09task03.dir/employee.cpp.i
-
-src/CMakeFiles/l09task03.dir/employee.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/employee.cpp.s"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/employee.cpp -o CMakeFiles/l09task03.dir/employee.cpp.s
-
-src/CMakeFiles/l09task03.dir/manager.cpp.o: src/CMakeFiles/l09task03.dir/flags.make
-src/CMakeFiles/l09task03.dir/manager.cpp.o: src/manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/l09task03.dir/manager.cpp.o"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/l09task03.dir/manager.cpp.o -c /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/manager.cpp
-
-src/CMakeFiles/l09task03.dir/manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/l09task03.dir/manager.cpp.i"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/manager.cpp > CMakeFiles/l09task03.dir/manager.cpp.i
-
-src/CMakeFiles/l09task03.dir/manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/manager.cpp.s"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/manager.cpp -o CMakeFiles/l09task03.dir/manager.cpp.s
-
-src/CMakeFiles/l09task03.dir/task.cpp.o: src/CMakeFiles/l09task03.dir/flags.make
-src/CMakeFiles/l09task03.dir/task.cpp.o: src/task.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/l09task03.dir/task.cpp.o"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/l09task03.dir/task.cpp.o -c /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/task.cpp
-
-src/CMakeFiles/l09task03.dir/task.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/l09task03.dir/task.cpp.i"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/task.cpp > CMakeFiles/l09task03.dir/task.cpp.i
-
-src/CMakeFiles/l09task03.dir/task.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/l09task03.dir/task.cpp.s"
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src/task.cpp -o CMakeFiles/l09task03.dir/task.cpp.s
-
 # Object files for target l09task03
 l09task03_OBJECTS = \
-"CMakeFiles/l09task03.dir/main.cpp.o" \
-"CMakeFiles/l09task03.dir/team.cpp.o" \
-"CMakeFiles/l09task03.dir/group.cpp.o" \
-"CMakeFiles/l09task03.dir/employee.cpp.o" \
-"CMakeFiles/l09task03.dir/manager.cpp.o" \
-"CMakeFiles/l09task03.dir/task.cpp.o"
+"CMakeFiles/l09task03.dir/main.cpp.o"
 
 # External object files for target l09task03
 l09task03_EXTERNAL_OBJECTS =
 
 bin/l09task03: src/CMakeFiles/l09task03.dir/main.cpp.o
-bin/l09task03: src/CMakeFiles/l09task03.dir/team.cpp.o
-bin/l09task03: src/CMakeFiles/l09task03.dir/group.cpp.o
-bin/l09task03: src/CMakeFiles/l09task03.dir/employee.cpp.o
-bin/l09task03: src/CMakeFiles/l09task03.dir/manager.cpp.o
-bin/l09task03: src/CMakeFiles/l09task03.dir/task.cpp.o
 bin/l09task03: src/CMakeFiles/l09task03.dir/build.make
 bin/l09task03: src/CMakeFiles/l09task03.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/l09task03"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/l09task03"
 	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/l09task03.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

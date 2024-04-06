@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/l09task03.dir/main.cpp.o CMakeFiles/l09task03.dir/team.cpp.o CMakeFiles/l09task03.dir/group.cpp.o CMakeFiles/l09task03.dir/employee.cpp.o CMakeFiles/l09task03.dir/manager.cpp.o CMakeFiles/l09task03.dir/task.cpp.o -o ../bin/l09task03 
+/usr/bin/c++ CMakeFiles/l09task03.dir/main.cpp.o -o ../bin/l09task03 

@@ -1,6 +1,40 @@
+/*
+Задание 3. Симуляция работы компании
+Что нужно сделать
+Реализуйте симуляцию работы компании. В компании существует вертикальное
+управление с иерархией. Есть основные рабочие, подчинённые, разбитые на
+команды. У каждой команды есть менеджер среднего звена. Всей компанией
+руководит глава компании. У всех сотрудников, включая руководителя, есть имена.
+
+Глава компании выполняет стратегическое управление. Он определяет основной
+вектор движения - задачи верхнего уровня. Менеджеры среднего звена разбивают
+эти задачи на подзадачи и раздают их своим подчинённым. Подчинённые выполняют
+работу.
+
+Реализация данной логики должна проходить упрощённым образом. Указания главы
+компании поступают из стандартного ввода и являются не более чем целочисленными
+идентификаторами.
+Данные идентификаторы служат зерном для генератора случайных чисел. Каждый из
+менеджеров, принимая себе эту целочисленную команду, добавляет к ней свой
+порядковый номер и вызывает с результирующей суммой функцию std::srand().
+На основе этой суммы вычисляется общее количество задач, которое требуется
+выполнить данной командой, - от 1 до количества работников в группе. Всего есть
+три типа задач для работников: A, B и C. Они тоже выбираются случайно и
+распределяются между незанятыми рабочими.
+При старте программы пользователь указывает в стандартном вводе количество
+команд и количество работников в каждой из команд.
+Далее пользователь вводит целые числа, которые соответствуют указаниям
+руководителя компании. Когда какой-то работник или менеджер получил указания
+или задачу, об этом сообщается в стандартный вывод, включая имя работающего
+сотрудника. Программа завершается, когда все работники заняты какими-то
+задачами.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include <map>
+
 
 /* класс задача */
 class Task
@@ -8,10 +42,18 @@ class Task
     int tID = 0;
     char tType;
 public:
+
     Task() {};
+
     Task(char tType, int tID) {
         this->tType = tType;
         this->tID = tID;
+    }
+
+    std::string toString() {
+        std::string taskData = "Type: ";
+        taskData += tType + " Task id:" + std::to_string(tID);
+        return taskData;
     }
 };
 
@@ -21,7 +63,7 @@ class Employee
     int eID = 0;
     int gID = 0;
     std::string name;
-    bool busy = false;
+    bool busy = false;  // работник занят/свободен (группа, если менеджер)
     Task* task;
 protected:
 
@@ -45,13 +87,18 @@ public:
         return eID;
     }
 
+    virtual void giveTask();
+
+
     int getGID() { return gID; }
 
     bool isBusy() { return busy; }
 
     std::string toString() {
         std::string introduce = "id: " + std::to_string(eID);
-        introduce += " Name: " + name + "\n";
+        introduce += " Name: " + name;
+        introduce += isBusy() ? this->task->toString() : " Free\n";
+
         return introduce;
     }
 
@@ -106,16 +153,13 @@ public:
     }
 
     int getGID() { return gID; }
-
     int getSize() { return groupSize; }
 
     std::vector<Employee*>& getEmployees() { return employees; }
 
     void addEmployee(Employee* e) {
-
         employees.push_back(e);
     }
-
     std::string toString() {
         std::string group = "Group: " + std::to_string(gID) += "\n";
         group += "Manager: " + employees[0]->toString();
@@ -123,10 +167,8 @@ public:
         {
             group += "Worker:  " + employees[i]->toString();
         }
-
         return group + "\n";
     }
-
 };
 
 /* Класс команда */
@@ -168,7 +210,28 @@ public:
         }
         std::cout << std::endl;
     }
+
+    bool anyFree() {
+        for (int i = 0; i < groups.size(); i++)
+        {
+            if (!groups[i]->getEmployees()[0]->isBusy())
+                return true;
+        }
+        return false;
+    }
+
+    Employee* getFreeTeam() {
+        for (int i = 0; i < groups.size(); i++)
+        {
+            Employee* manager = groups[i]->getEmployees()[0];
+            if (!manager->isBusy())
+                return manager;
+        }
+        return nullptr;
+    }
+
     void gatherTeam();
+    std::vector<Employee*> getManagers();
 
 };
 
@@ -190,7 +253,6 @@ public:
         this->setName(&mName);
         this->team = t;
         this->group = g;
-
     }
 
     int generateTask(int tID) {
@@ -198,22 +260,23 @@ public:
         Task* task = new Task(taskTypes[rand() % 3], tID);
         int eID = giveTask(task);
         if (eID == 0) {
-            setBusy();
-            return 0;
+            setBusy();  // Работники в группе заняты
+            return 0;   // Задача НЕ поставлна
         }
 
         groupTasks.insert(std::make_pair(eID, task));
-        return eID;
+        return eID;     // задача поставлена работнику с id = eID
     }
 
-    int giveTask(Task* task) {
+    int giveTask(Task* task)
+    {
         for (int i = 0; i < group->getSize(); i++)
         {
             Employee* e = group->getEmployees()[i];
-            if (!e->isBusy())
+            if (!e->isBusy())   // Назначить задачу если не занят
                 return e->putTask(task);
         }
-        return 0;
+        return 0;       // все работники заняты, задача не поставлена.
     }
 
 };
@@ -257,21 +320,28 @@ void Team::gatherTeam() {
     }
 }
 
+std::vector<Employee*> Team::getManagers() {
 
 
-/*=================================== 80 =====================================*/
+}
+
+
+
 int main(int argc, char const* argv[])
 {
     std::cout << "Start..." << std::endl;
 
     Team* t = new Team();
     t->gatherTeam();
-    t->printTeam();
+
+    while (t->anyFree()) {
+        int task;
+        std::cout << "Input task number: ";
+        std::cin >> task;
+    }
+
+    // t->printTeam();
 
     return 0;
-// for f in team group employee manager task; do touch include/$f.h; done
-// for f in team group employee manager task; do touch src/$f.cpp; done
-// for f in team group employee manager task; do echo "#pragma once" >> include/$f.h; done
-// for f in Team Group Employee Manager Task; do echo "#include <$f.h>" >> src/$f.cpp; done
 
 }

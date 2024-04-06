@@ -144,60 +144,6 @@ l09task03/fast:
 	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/build
 .PHONY : l09task03/fast
 
-employee.o: employee.cpp.o
-
-.PHONY : employee.o
-
-# target to build an object file
-employee.cpp.o:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/employee.cpp.o
-.PHONY : employee.cpp.o
-
-employee.i: employee.cpp.i
-
-.PHONY : employee.i
-
-# target to preprocess a source file
-employee.cpp.i:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/employee.cpp.i
-.PHONY : employee.cpp.i
-
-employee.s: employee.cpp.s
-
-.PHONY : employee.s
-
-# target to generate assembly for a file
-employee.cpp.s:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/employee.cpp.s
-.PHONY : employee.cpp.s
-
-group.o: group.cpp.o
-
-.PHONY : group.o
-
-# target to build an object file
-group.cpp.o:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/group.cpp.o
-.PHONY : group.cpp.o
-
-group.i: group.cpp.i
-
-.PHONY : group.i
-
-# target to preprocess a source file
-group.cpp.i:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/group.cpp.i
-.PHONY : group.cpp.i
-
-group.s: group.cpp.s
-
-.PHONY : group.s
-
-# target to generate assembly for a file
-group.cpp.s:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/group.cpp.s
-.PHONY : group.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -225,87 +171,6 @@ main.cpp.s:
 	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-manager.o: manager.cpp.o
-
-.PHONY : manager.o
-
-# target to build an object file
-manager.cpp.o:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/manager.cpp.o
-.PHONY : manager.cpp.o
-
-manager.i: manager.cpp.i
-
-.PHONY : manager.i
-
-# target to preprocess a source file
-manager.cpp.i:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/manager.cpp.i
-.PHONY : manager.cpp.i
-
-manager.s: manager.cpp.s
-
-.PHONY : manager.s
-
-# target to generate assembly for a file
-manager.cpp.s:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/manager.cpp.s
-.PHONY : manager.cpp.s
-
-task.o: task.cpp.o
-
-.PHONY : task.o
-
-# target to build an object file
-task.cpp.o:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/task.cpp.o
-.PHONY : task.cpp.o
-
-task.i: task.cpp.i
-
-.PHONY : task.i
-
-# target to preprocess a source file
-task.cpp.i:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/task.cpp.i
-.PHONY : task.cpp.i
-
-task.s: task.cpp.s
-
-.PHONY : task.s
-
-# target to generate assembly for a file
-task.cpp.s:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/task.cpp.s
-.PHONY : task.cpp.s
-
-team.o: team.cpp.o
-
-.PHONY : team.o
-
-# target to build an object file
-team.cpp.o:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/team.cpp.o
-.PHONY : team.cpp.o
-
-team.i: team.cpp.i
-
-.PHONY : team.i
-
-# target to preprocess a source file
-team.cpp.i:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/team.cpp.i
-.PHONY : team.cpp.i
-
-team.s: team.cpp.s
-
-.PHONY : team.s
-
-# target to generate assembly for a file
-team.cpp.s:
-	cd /large/data2/Home/Andrew/Documents/geekbrains/CPP_advanced/lesson009/task03 && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/l09task03.dir/build.make src/CMakeFiles/l09task03.dir/team.cpp.s
-.PHONY : team.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -315,24 +180,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... l09task03"
-	@echo "... employee.o"
-	@echo "... employee.i"
-	@echo "... employee.s"
-	@echo "... group.o"
-	@echo "... group.i"
-	@echo "... group.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... manager.o"
-	@echo "... manager.i"
-	@echo "... manager.s"
-	@echo "... task.o"
-	@echo "... task.i"
-	@echo "... task.s"
-	@echo "... team.o"
-	@echo "... team.i"
-	@echo "... team.s"
 .PHONY : help
 
 
