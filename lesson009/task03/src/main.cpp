@@ -87,9 +87,6 @@ public:
         return eID;
     }
 
-    virtual void giveTask();
-
-
     int getGID() { return gID; }
 
     bool isBusy() { return busy; }
@@ -334,11 +331,11 @@ int main(int argc, char const* argv[])
     Team* t = new Team();
     t->gatherTeam();
 
-    while (t->anyFree()) {
-        int task;
-        std::cout << "Input task number: ";
-        std::cin >> task;
-    }
+    // while (t->anyFree()) {
+    //     int task;
+    //     std::cout << "Input task number: ";
+    //     std::cin >> task;
+    // }
 
     // t->printTeam();
 
