@@ -33,45 +33,52 @@ int main()
 {
     Display* d = new Display();
     Window* w = new Window(d);
-    Position* p = new Position(0, 0);
+    Position* p = new Position(d);
     std::string command;
+    bool runFlag = true;
 
     do {
+        std::cout << "Input command: ";
         std::cin >> command;
+
         if (command == "resize") {
             int x, y, answer = 1;
             std::cout << "Input new size (x y): ";
             std::cin >> x >> y;
-            if (p) std::cout << p;
-
-            while ((answer = w->resize(x, y)))
-            // while (!p)
+            p->setPosition(x, y, false);
+            while (!p->isFine())
             {
                 std::cout << "Wrong size. Try again (x y): ";
                 std::cin >> x >> y;
+                p->setPosition(x, y, false);
             };
-            w->resize(x, y);
+            w->resize(p);
         }
 
         if (command == "move") {
             int x, y, answer = 1;
             std::cout << "Input coordinates (x y): ";
             std::cin >> x >> y;
-            while ((answer = w->move(x, y)))
+            p->setPosition(x, y, true);
+            while (!p->isFine())
             {
                 std::cout << "Wrong coordinates. Try again (x y): ";
                 std::cin >> x >> y;
+                p->setPosition(x, y, true);
             };
-            w->move(x, y);
+            w->move(p);
         }
 
         if (command == "display") {
             w->display();
         }
 
-        if (command == "close") { command = w->close(); }
+        if (command == "close") { command = w->close(runFlag); }
 
-    } while (command != "exit");
+    } while (runFlag);
+
+    delete p;
+    delete w;
 
     return 0;
 }

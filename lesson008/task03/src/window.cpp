@@ -23,19 +23,21 @@ int Window::move(int x, int y) {
     {
         return 1;
     }
-
+    
     posX += x;
     posY += y;
+
+    std::cout << "new X " << posX << " new Y " << posY;
 
     return 0;
 }
 
-// int Window::move(Position* p) {
-//     posX += p->getX();
-//     posY += p->getY();
+int Window::move(Position* p) {
+    posX += p->getX();
+    posY += p->getY();
 
-//     return 0;
-// }
+    return 0;
+}
 
 int Window::resize(int x, int y) {
     if (x < 0 || y < 0) return 1;
@@ -44,14 +46,15 @@ int Window::resize(int x, int y) {
     return 0;
 }
 
-// int Window::resize(Position* p) {
-//     sizeX = p->getX();
-//     sizeY = p->getY();
-//     return 0;
-// }
+int Window::resize(Position* p) {
+    sizeX = p->getX();
+    sizeY = p->getY();
+    return 0;
+}
 
-std::string Window::close() {
+std::string Window::close(bool& runFlag) {
     sizeX = 0;
     sizeY = 0;
+    runFlag = false;
     return "exit";
 }

@@ -28,6 +28,6 @@ public:
     int resize(Position*);
 
     void display();
-    std::string close();
+    std::string close(bool&);
 
 };
