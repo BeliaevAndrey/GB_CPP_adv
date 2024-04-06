@@ -38,7 +38,7 @@ int main()
     bool runFlag = true;
 
     do {
-        std::cout << "Input command: ";
+        std::cout << "Input command (resize/move/display/close): ";
         std::cin >> command;
 
         if (command == "resize") {
