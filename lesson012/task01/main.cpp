@@ -20,27 +20,27 @@ org осуществляется запрос того или иного тип�
 std::string address = "http://httpbin.org/";
 
 
-void funcGet(cpr::Response &r) {
+void funcGet(cpr::Response& r) {
     r = cpr::Get(cpr::Url(address + "get"));
 }
 
-void funcPost(cpr::Response &r) {
+void funcPost(cpr::Response& r) {
     r = cpr::Post(cpr::Url(address + "post"));
 }
 
-void funcPut(cpr::Response &r) {
+void funcPut(cpr::Response& r) {
     r = cpr::Put(cpr::Url(address + "put"));
 }
 
-void funcDelete(cpr::Response &r) {
+void funcDelete(cpr::Response& r) {
     r = cpr::Delete(cpr::Url(address + "delete"));
 }
 
-void funcPatch(cpr::Response &r) {
+void funcPatch(cpr::Response& r) {
     r = cpr::Patch(cpr::Url(address + "patch"));
 }
 
-void printResponse(cpr::Response &r) {
+void printResponse(cpr::Response& r) {
     std::cout << "status code: " << r.status_code << std::endl;
     std::cout << "text:        \n" << r.text << std::endl;
 }
