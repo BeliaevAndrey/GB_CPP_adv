@@ -67,12 +67,12 @@ void shared_ptr_toy::reset() {
     }
 }
 
-shared_ptr_toy::operator bool() const
+shared_ptr_toy::operator bool()
 {
     return object != nullptr;
 }
 
-bool shared_ptr_toy::operator==(const shared_ptr_toy& other) const
+bool shared_ptr_toy::operator==(const shared_ptr_toy& other)
 {
     return object == other.object;
 }

@@ -24,9 +24,9 @@ public:
 
     void reset();
 
-    operator bool() const;
+    operator bool();
 
-    bool operator==(const shared_ptr_toy& other) const;
+    bool operator==(const shared_ptr_toy& other);
 
     Toy* getToy();
 
