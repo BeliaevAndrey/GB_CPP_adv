@@ -1,0 +1,72 @@
+{
+    "Common": {
+        "Title": "Blade Runner",
+        "Genres": [
+            "Action",
+            "Drama",
+            "Sci-FiThriller"
+        ],
+        "Countries": [
+            "United States",
+            "Hong Kong"
+        ],
+        "Release date": "June 25, 1982",
+        "Production companies": [
+            "The Ladd Company",
+            "Shaw Brothers",
+            "Blade Runner Partnership"
+        ],
+        "Director": "Ridley Scott",
+        "Writers": [
+            "Hampton Fancher",
+            "David Webb Peoples",
+            "Philip K. Dick"
+        ],
+        "Stars": [
+            "Harrison Ford",
+            "Rutger Hauer",
+            "Sean Young"
+        ]
+    },
+    "Crew": {
+        "Produced by": {
+            "producer: 2007 Final Cut version": "Charles de Lauzirika",
+            "producer (produced by)": "Michael Deeley",
+            "executive producer": [
+                "Hampton Fancher",
+                "Brian Kelly"
+            ],
+            "co-executive producer (uncredited)": [
+                "Jerry Perenchio",
+                "Run Run Shaw",
+                "Bud Yorkin"
+            ],
+            "associate producer": "Ivor Powell",
+            "associate producer: 2007 Final Cut version": "Paul Prischman",
+            "co-producer (uncredited)": "Ridley Scott"
+        },
+        "Music by": "Vangelis"
+    },
+    "Cast": {
+        "Deckard": "Harrison Ford",
+        "Rachael": "Sean Young",
+        "Gaff": "Edward James Olmos",
+        "Batty": "Rutger Hauer",
+        "Pris": "Daryl Hannah",
+        "Leon": "Brion James",
+        "Zhora": "Joanna Cassidy",
+        "Bryant": "M. Emmet Walsh",
+        "Sebastian": "William Sanderson",
+        "Tyrell": "Joe Turkel",
+        "Chew": "James Hong",
+        "Holden": "Morgan Paull",
+        "Bear": "Kevin Thompson",
+        "Kaiser": "John Edward Allen",
+        "Taffey Lewis": "Hy Pyke",
+        "Cambodian Lady":"Kimiko Hiroshige",
+        "Sushi Master(as Robert Okazaki)":"Bob Okazaki",
+        "Saleslady": "Carolyn DeMirjian"
+    }
+}
+
+
