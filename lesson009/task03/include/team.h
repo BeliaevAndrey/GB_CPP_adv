@@ -1,9 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <map>
-#include <vector>
 
 #include "task.h"
 #include "employee.h"
@@ -20,6 +16,7 @@ public:
     Manager* getFreeGroup();
 
     bool setTask(int taskNo);
+
     void printTeamTasks();
 
 };

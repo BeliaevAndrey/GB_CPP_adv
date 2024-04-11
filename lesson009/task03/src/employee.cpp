@@ -74,7 +74,7 @@ void Manager::giveTask(int taskNo) {
     int taskAmt = (rand() % groupSize) + 1;
     for (int i = 0; i < taskAmt; i++)
     {
-        Task* task = new Task(taskNo, taskTypes[taskNo % 3]);
+        Task* task = new Task(taskNo + i, taskTypes[taskNo % 3]);
         Worker* worker = getFree();
         if (worker != nullptr) {
             worker->setTask(task);
@@ -82,7 +82,7 @@ void Manager::giveTask(int taskNo) {
         }
         else {
             setBusy();
-            std::cout << getEID()
+            std::cout << "Group " << getEID()
                 << " All workers busy! " << std::endl;
             return;
         }
