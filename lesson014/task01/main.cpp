@@ -92,7 +92,7 @@ int main()
 {
     std::ofstream fileOut("film_auto.json");
 
-    std::string filename("draft_film.txt");
+    std::string filename("src_film.txt");
     readFile(filename);
 
 
