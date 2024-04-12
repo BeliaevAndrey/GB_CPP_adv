@@ -62,7 +62,7 @@ int main()
 
     std::string name = "Rutger";
     std::cout << "Input name and/or surname of the actor: ";
-    std::cin >> name;
+    std::getline(std::cin, name);
 
     searchActor(name, dict);
 
