@@ -1,0 +1,323 @@
+{
+    "Blade Runner": {
+        "Common": {
+            "Title": "Blade Runner",
+            "Genres": [
+                "Action",
+                "Drama",
+                "Sci-FiThriller"
+            ],
+            "Countries": [
+                "United States",
+                "Hong Kong"
+            ],
+            "Release date": "June 25, 1982",
+            "Production companies": [
+                "The Ladd Company",
+                "Shaw Brothers",
+                "Blade Runner Partnership"
+            ],
+            "Director": "Ridley Scott",
+            "Writers": [
+                "Hampton Fancher",
+                "David Webb Peoples",
+                "Philip K. Dick"
+            ],
+            "Stars": [
+                "Harrison Ford",
+                "Rutger Hauer",
+                "Sean Young"
+            ]
+        },
+        "Crew": {
+            "Produced by": {
+                "producer: 2007 Final Cut version": "Charles de Lauzirika",
+                "producer (produced by)": "Michael Deeley",
+                "executive producer": [
+                    "Hampton Fancher",
+                    "Brian Kelly"
+                ],
+                "co-executive producer (uncredited)": [
+                    "Jerry Perenchio",
+                    "Run Run Shaw",
+                    "Bud Yorkin"
+                ],
+                "associate producer": "Ivor Powell",
+                "associate producer: 2007 Final Cut version": "Paul Prischman",
+                "co-producer (uncredited)": "Ridley Scott"
+            },
+            "Music by": [
+                "Vangelis"
+            ]
+        },
+        "Cast": {
+            "Harrison Ford": "Deckard",
+            "Sean Young": "Rachael",
+            "Edward James Olmos": "Gaff",
+            "Rutger Hauer": "Batty",
+            "Daryl Hannah": "Pris",
+            "Brion James": "Leon",
+            "Joanna Cassidy": "Zhora",
+            "M. Emmet Walsh": "Bryant",
+            "William Sanderson": "Sebastian",
+            "Joe Turkel": "Tyrell",
+            "James Hong": "Chew",
+            "Morgan Paull": "Holden",
+            "Kevin Thompson": "Bear",
+            "John Edward Allen": "Kaiser",
+            "Hy Pyke": "Taffey Lewis",
+            "Kimiko Hiroshige": "Cambodian Lady",
+            "Bob Okazaki": "Sushi Master(as Robert Okazaki)",
+            "Carolyn DeMirjian": "Saleslady"
+        }
+    },
+    "Raiders of the Lost Ark": {
+        "Common": {
+            "Title": "Raiders of the Lost Ark",
+            "Genres": [
+                "Action",
+                "Adventure"
+            ],
+            "Countries": [
+                "United States"
+            ],
+            "Release Date": "June 12, 1981",
+            "Production companies": [
+                "Paramount Pictures",
+                "Lucasfilm"
+            ],
+            "Director": "Steven Spielberg",
+            "Writers": [
+                "Lawrence Kasdan",
+                "George Lucas",
+                "Philip Kaufman"
+            ],
+            "Stars": [
+                "Harrison Ford",
+                "Karen Allen",
+                "Paul Freeman"
+            ]
+        },
+        "Crew": {
+            "Produced by": {
+                "executive producer": [
+                    "Howard G. Kazanjian",
+                    "George Lucas"
+                ],
+                "producer (produced by)": "Frank Marshall",
+                "associate producer": "Robert Watts"
+            },
+            "Music by": "John Williams (music)"
+        },
+        "Cast": {
+            "Harrison Ford": "Indy",
+            "Karen Allen": "Marion",
+            "Paul Freeman": "Belloq",
+            "John Rhys-Davies": "Sallah",
+            "Ronald Lacey": "Toht",
+            "Denholm Elliott": "Brody",
+            "Alfred Molina": "Satipo",
+            "Wolf Kahler": "Dietrich",
+            "Anthony Higgins": "Gobler",
+            "Vic Tablian": "Barranca…",
+            "Don Fellows": "Col. Musgrove",
+            "William Hootkins": "Major Eaton",
+            "Bill Reimbold": "Bureaucrat",
+            "Fred Sorenson": "Jock",
+            "Patrick Durkin": "Australian Climber",
+            "Matthew Scurfield": "2nd. Nazi",
+            "Malcolm Weaver": "Ratty Nepalese(as Malcom Weaver)",
+            "Sonny Caldinez": "Mean Mongolian"
+        }
+    },
+    "Split Second": {
+        "Common": {
+            "Title": "Split Second",
+            "Genres": [
+                "Action",
+                "Crime",
+                "Horror",
+                "SciFi",
+                "Thriller"
+            ],
+            "Countries": [
+                "United Kingdom"
+            ],
+            "Release Date": "June 5, 1992 (United Kingdom)",
+            "Production companies": [
+                "Challenge Film Corporation",
+                "Entertainment",
+                "Muse Productions"
+            ],
+            "Director": "Tony Maylam",
+            "Writers": [
+                "Gary Scott Thompson"
+            ],
+            "Stars": [
+                "Rutger Hauer",
+                "Kim Cattrall",
+                "Alastair Duncan"
+            ]
+        },
+        "Crew": {
+            "Produced by": {
+                "line producer": "Laurie Borg",
+                "executive producer": [
+                    "Keith Cavele",
+                    "Chris Hanley"
+                ],
+                "producer": "Laura Gregory",
+                "associate producer": "Gary Scott Thompson "
+            },
+            "Music by": [
+                "Francis Haines",
+                "Stephen W. Parsons"
+            ]
+        },
+        "Cast": {
+            "Rutger Hauer": "Harley Stone",
+            "Kim Cattrall": "Michelle McLaine",
+            "Alastair Duncan": "Det. Dick Durkin(as Neil Duncan)",
+            "Michael J. Pollard": "The Rat Catcher",
+            "Alun Armstrong": "Thrasher",
+            "Pete Postlethwaite": "Paulsen",
+            "Ian Dury": "Jay Jay",
+            "Roberta Eaton": "Robin",
+            "Tony Steedman": "Pat O'Donnell",
+            "Steven Hartley": "Foster McLaine",
+            "Sara Stockbridge": "Tiffany",
+            "Colin Skeaping": "Drunk",
+            "Ken Bones": "Forensic Expert",
+            "Dave Duffy": "Nick 'The Barman'",
+            "Stewart Harvey-Wilson": "The Killer",
+            "Paul Grayson": "The Killer",
+            "Chris Chappell": "Rat Catcher's Assistant(as Chris Chappel)",
+            "Charlotte Hick": "Little Girl"
+        }
+    },
+    "Dune": {
+        "Common": {
+            "Title": "Dune",
+            "Genres": [
+                "Action",
+                "Adventure",
+                "SciFi"
+            ],
+            "Countries": [
+                "United States",
+                "Mexico"
+            ],
+            "Release Date": "December 14, 1984 (United States)",
+            "Production companies": [
+                "Dino De Laurentiis Company",
+                "Estudios Churubusco Azteca S.A."
+            ],
+            "Director": "David Lynch",
+            "Writers": [
+                "Frank Herbert",
+                "David Lynch"
+            ],
+            "Stars": [
+                "Kyle MacLachlan",
+                "Virginia Madsen",
+                "Francesca Annis"
+            ]
+        },
+        "Crew": {
+            "Produced by": {
+                "executive producer (uncredited)": "Dino De Laurentiis",
+                "producer": "Raffaella De Laurentiis",
+                "associate producer": "José López Rodero"
+            },
+            "Music by": [
+                "TOTO",
+                "Marty Paich"
+            ]
+        },
+        "Cast": {
+            "Francesca Annis": "Lady Jessica",
+            "Leonardo Cimino": "The Baron's Doctor",
+            "Brad Dourif": "Piter De Vries",
+            "José Ferrer": "Padishah Emperor Shaddam IV",
+            "Linda Hunt": "Shadout Mapes",
+            "Freddie Jones": "Thufir Hawat",
+            "Richard Jordan": "Duncan Idaho",
+            "Kyle MacLachlan": "Paul Atreides",
+            "Virginia Madsen": "Princess Irulan",
+            "Silvana Mangano": "Reverend Mother Ramallo",
+            "Everett McGill": "Stilgar",
+            "Kenneth McMillan": "Baron Vladimir Harkonnen",
+            "Jack Nance": "Nefud",
+            "Sian Phillips": "Reverend Mother Gaius Helen Mohiam ",
+            "Jurgen Prochnow": "Duke Leto Atreides",
+            "Paul L. Smith": "The Beast Rabban (as Paul Smith)",
+            "Patrick Stewart": "Gurney Halleck",
+            "Sting": "Feyd Rautha",
+            "Dean Stockwell": "Doctor Wellington Yueh",
+            "Max von Sydow": "Doctor Kynes (as Max Von Sydow)",
+            "Alicia Witt": "Alia (as Alicia Roanne Witt)",
+            "Sean Young": "Chani"
+        }
+    },
+    "Indiana Jones and the Temple of Doom": {
+        "Common": {
+            "Title": "Indiana Jones and the Temple of Doom",
+            "Genres": [
+                "Action",
+                "Adventure"
+            ],
+            "Countries": [
+                "United States"
+            ],
+            "Release Date": "May 8, 1984",
+            "Production companies": [
+                "Paramount Pictures",
+                "Lucasfilm"
+            ],
+            "Director": "Steven Spielberg",
+            "Writers": [
+                "Willard Huyck",
+                "Gloria Katz",
+                "George Lucas"
+            ],
+            "Stars": [
+                "Harrison Ford",
+                "Kate Capshaw",
+                "Ke Huy Quan"
+            ]
+        },
+        "Crew": {
+            "Produced by": {
+                "associate producer": "Kathleen Kennedy",
+                "executive producer": [
+                    "George Lucas",
+                    "Frank Marshall"
+                ],
+                "producer (produced by)": "Robert Watts"
+            },
+            "Music by": [
+                "John Williams"
+            ]
+        },
+        "Cast": {
+            "Harrison Ford": "Indiana Jones",
+            "Kate Capshaw": "Willie Scott",
+            "Ke Huy Quan": "Short Round",
+            "Amrish Puri": "Mola Ram",
+            "Roshan Seth": "Chattar Lal",
+            "Philip Stone": "Captain Blumburtt",
+            "Roy Chiao": "Lao Che",
+            "David Yip": "Wu Han",
+            "Ric Young": "Kao Kan",
+            "Chua Kah Joo": "Chen",
+            "Rex Ngui": "Maitre d'",
+            "Philip Tan": "Chief Henchman",
+            "Dan Aykroyd": "Weber",
+            "Akio Mitamura": "Chinese Pilot",
+            "Michael Yama": "Chinese Co-Pilot",
+            "D.R. Nanayakkara": "Shaman",
+            "Dharmadasa Kuruppu": "Chieftain",
+            "Stany De Silva": "Sajnu"
+        }
+    }
+}
