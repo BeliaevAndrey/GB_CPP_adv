@@ -65,6 +65,7 @@ class Pond
 {
 private:
     Field* field[9];
+    int attempts = 0;
 
     void placeFish() {
         int bootCount = 3;
@@ -91,6 +92,7 @@ public:
     Pond() {
         placeFish();
     }
+
     void printPond() {
         std::cout << "---------" << std::endl;
 
@@ -108,7 +110,10 @@ public:
         std::cout << "---------" << std::endl;
     }
 
+    int getAttempts() { return attempts; }
+
     void castRod(int i) {
+        attempts++;
         if (field[i]->fish) throw win_ecxeption();
         else if (field[i]->boot)throw lose_ecxeption();
     }
@@ -127,15 +132,16 @@ int main()
             pond.castRod(field - 1);
         }
         catch (win_ecxeption& exc) {
-            std::cout << exc.what() << std::endl;
+            std::cerr << exc.what() << std::endl;
             break;
         }
         catch (lose_ecxeption& exc) {
-            std::cout << exc.what() << std::endl;
+            std::cerr << exc.what() << std::endl;
             break;
         }
     }
 
+    std::cout << "Attempts amount: " << pond.getAttempts() << std::endl;
     pond.printPond();
 
     return 0;
