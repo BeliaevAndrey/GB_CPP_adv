@@ -34,8 +34,10 @@
 #include <string>
 #include <ctime>
 #include <exception>
-class win_ecxeption : public std::exception
-{
+
+
+
+class Fish : public std::exception {
 public:
     const char* what() const noexcept override
     {
@@ -43,8 +45,7 @@ public:
     }
 };
 
-class lose_ecxeption : public std::exception
-{
+class Boot : public std::exception {
 public:
     const char* what() const noexcept override
     {
@@ -52,9 +53,6 @@ public:
     }
 };
 
-
-class Fish {};
-class Boot {};
 class Field {
 public:
     Fish* fish;
@@ -69,11 +67,11 @@ private:
 
     void placeFish() {
         int bootCount = 3;
-        std::srand(std::time(nullptr));
 
         for (int i = 0; i < 9; i++)
             field[i] = new Field();
 
+        std::srand(std::time(nullptr));
 
         field[std::rand() % 9]->fish = new Fish();
 
@@ -112,10 +110,25 @@ public:
 
     int getAttempts() { return attempts; }
 
-    void castRod(int i) {
+    void readField(int& fieldNm) {
+        std::cout << "input sector (1-9): ";
+        std::cin >> fieldNm;
+
+        if (fieldNm < 1 || fieldNm > 9)
+            throw std::invalid_argument("Wrong field number: " +
+                std::to_string(fieldNm));
+
+        fieldNm -= 1; // actual fields are from 0 to 8
+    }
+
+    void castRod() {
         attempts++;
-        if (field[i]->fish) throw win_ecxeption();
-        else if (field[i]->boot)throw lose_ecxeption();
+        int fieldNm;
+        readField(fieldNm);
+
+        if (field[fieldNm]->fish) throw* (field[fieldNm]->boot);
+
+        else if (field[fieldNm]->boot) throw* (field[fieldNm]->fish);
     }
 };
 
@@ -125,19 +138,19 @@ int main()
     int field;
 
     while (true) {
-        std::cout << "input sector (1-9): ";
-        std::cin >> field;
         try {
-
-            pond.castRod(field - 1);
+            pond.castRod();
         }
-        catch (win_ecxeption& exc) {
+        catch (Fish& exc) {
             std::cerr << exc.what() << std::endl;
             break;
         }
-        catch (lose_ecxeption& exc) {
+        catch (Boot& exc) {
             std::cerr << exc.what() << std::endl;
             break;
+        }
+        catch (std::invalid_argument& exc) {
+            std::cerr << exc.what() << std::endl;
         }
     }
 
