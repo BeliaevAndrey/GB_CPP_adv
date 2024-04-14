@@ -118,7 +118,6 @@ void fillStorageAuto()
 
     for (int i = 0; i < 10 + rand() % 11; i++)
     {
-
         int article = (10 + rand()) % 1000;
         int amt = 14 + rand() % 10;
 
@@ -133,10 +132,8 @@ void printMap(std::map<int, int>& inMap, const std::string& place)
     std::cout << line << place << line << std::endl;
 
     int count = 0;
-    for (
-        std::map<int, int>::iterator it = inMap.begin();
-        it != inMap.end(); ++it
-        )
+    for (std::map<int, int>::iterator it = inMap.begin();
+         it != inMap.end(); ++it)
     {
         std::cout << ++count << ".\t";
         std::cout << it->first << "\t\t" << it->second << std::endl;
@@ -147,9 +144,7 @@ void printMap(std::map<int, int>& inMap, const std::string& place)
 
 void shopping(Basket& basket)
 {
-
     bool runFlag(true);
-
     std::string command;
 
     while (runFlag) {
