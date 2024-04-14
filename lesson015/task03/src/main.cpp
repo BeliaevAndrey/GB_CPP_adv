@@ -27,73 +27,14 @@ double, std::string.
 команд и их данных.
 */
 
-#include <iostream>
 #include <string>
-#include <vector>
+#include "registry.h"
 
-template<typename T1, typename T2>
-struct RePair {
-    T1 key;
-    T2 val;
-
-    RePair(T1 k, T2 v) {
-        key = k;
-        val = v;
-    }
-};
-
-template<typename T1, typename T2>
-class Registry {
-private:
-    std::vector<RePair<T1, T2>> storage;
-
-public:
-    void add(T1 k, T2 v)
-    {
-        storage.push_back(RePair<T1, T2>(k, v));
-    }
-
-    void remove(T1 k)
-    {
-        for (int i = 0; i < storage.size(); i++)
-        {
-            if (storage[i].key == k)
-            {
-                storage.erase(storage.begin() + i);
-            }
-        }
-    }
-
-    void print()
-    {
-        std::cout << "{";
-
-        for (int i = 0; i < storage.size(); i++)
-        {
-            std::cout << storage.at(i).key << ": " << storage.at(i).val;
-            if (i < storage.size() - 1)
-                std::cout << ", ";
-
-        }
-
-        std::cout << "}" << std::endl;
-    }
-
-    std::vector<T2>* find(T1 k)
-    {
-        std::vector<T2>* tmp = new std::vector<T2>;
-        for (int i = 0; i < storage.size(); i++)
-            if (k == storage.at(i).key)
-                tmp->push_back(storage.at(i).val);
-
-        return tmp;
-    }
-};
-
-int main()
+void testNumbers()
 {
     Registry<int, float>* rTest = new Registry<int, float>();
 
+    /* Test add */
     for (int i = 0; i < 200; i += 10)
     {
         rTest->add(i + 1, i + (1 + rand() % 1000) / 1000.0);
@@ -109,9 +50,11 @@ int main()
     rTest->add(10, 150.11233);
     rTest->add(100, 150.163);
 
+    /* Test print */
     rTest->print();
     std::cout << std::endl;
 
+    /* Test find */
     std::vector<float>* findResult = rTest->find(100);
 
     for (int i = 0; i < findResult->size(); i++)
@@ -121,24 +64,113 @@ int main()
     }
     std::cout << std::endl;
 
+    /* Test remove */
     rTest->remove(10);
 
+
+    /* Test find absent */
     findResult = rTest->find(10);
     if (findResult->size() > 0) {
+
         for (int i = 0; i < findResult->size(); i++)
-        {
             std::cout << findResult->at(i) << " ";
 
-        }
         std::cout << std::endl;
     }
-    else std::cout << "not found" << std::endl;
+
+    else
+        std::cout << "Not found" << std::endl;
+
 
     rTest->print();
     std::cout << std::endl;
 
-    
+    /* Test remove absent*/
+    rTest->remove(10);
 
     delete rTest;
+}
+
+void testSymbols()
+{
+    Registry<std::string, float>* rTest = new Registry<std::string, float>();
+
+    /* Test add */
+    for (int i = 0; i < 200; i += 10)
+    {
+        rTest->add(
+            ((std::to_string(i + 1)).c_str()),
+            i + (1 + rand() % 1000) / 1000.0);
+    }
+
+    rTest->add("100", 900.153);
+    rTest->add("10", 890.193);
+    rTest->add("100", 890.193);
+    rTest->add("10", 980.183);
+    rTest->add("100", 980.183);
+    rTest->add("10", 150.163);
+    rTest->add("100", 150.193);
+    rTest->add("10", 150.11233);
+    rTest->add("100", 150.163);
+
+    /* Test print */
+    rTest->print();
+    std::cout << std::endl;
+
+    /* Test find */
+    std::vector<float>* findResult = rTest->find("100");
+
+    for (int i = 0; i < findResult->size(); i++)
+    {
+        std::cout << findResult->at(i) << " ";
+
+    }
+    std::cout << std::endl;
+
+    /* Test remove */
+    rTest->remove("10");
+
+
+    /* Test find absent */
+    findResult = rTest->find("10");
+    if (findResult->size() > 0) {
+
+        for (int i = 0; i < findResult->size(); i++)
+            std::cout << findResult->at(i) << " ";
+
+        std::cout << std::endl;
+    }
+
+    else
+        std::cout << "Not found" << std::endl;
+
+
+    rTest->print();
+    std::cout << std::endl;
+
+    /* Test remove absent*/
+    rTest->remove("10");
+
+    delete rTest;
+
+}
+
+int main()
+{
+    std::cout << "---------------"
+        << " Registry<int, float>    test "
+        << "---------------"
+        << std::endl;
+
+    testNumbers();
+
+    std::cout << "\n\n---------------"
+        << " Registry<string, float> test "
+        << "---------------"
+        << std::endl;
+        
+    testSymbols();
+
     return 0;
 }
+
