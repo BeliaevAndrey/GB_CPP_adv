@@ -66,7 +66,6 @@ int main()
     float fltArr[arrLen];
 
     readArray(fltArr);
-    std::cin.clear();
 
     printArray(fltArr);
 
